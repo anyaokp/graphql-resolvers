@@ -92,7 +92,7 @@ const UserSchema = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-User.virtual('id').get(function () {
+UserSchema.virtual('id').get(function () {
   return this._id
 })
 

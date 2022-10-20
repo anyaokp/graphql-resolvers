@@ -56,6 +56,48 @@ app.use(
           console.log(err)
         }
       },
+      createBucket: async (args) => {
+        try {
+          let result = await api.createBucket(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listBuckets: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listBuckets(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getBucket: async (args) => {
+        try {
+          let result = await api.getBucket(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateBucket: async (args) => {
+        try {
+          let result = await api.updateBucket(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteBucket: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteBucket(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

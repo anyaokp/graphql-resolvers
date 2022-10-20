@@ -1223,6 +1223,53 @@ type ModelOrderMethodConnection {
 	pagination: Pagination!
 }
 
+type Bucket
+{
+  id: ID!
+  customerId:  ID!
+  products: [BucketItem]
+}
+
+type BucketItem {
+	productId: ID!
+	configurationId: String
+	weight: String
+	promotionId: String
+	quantity: Int!
+  }
+
+input CreateBucketInput {
+	id: ID
+	customerId: ID!
+	products: [BucketItemInput]
+  }
+
+input UpdateBucketInput {
+	id: ID!
+	customerId: ID
+	products: [BucketItemInput]
+  }
+
+input BucketItemInput {
+	productId: ID!
+	configurationId: String
+	weight: String
+	promotionId: String
+	quantity: Int!
+  }
+
+input ModelBucketFilterInput {
+	id: String
+	customerId: String
+	page: Int
+	limit: Int
+  }
+
+  type ModelBucketConnection {
+	items: [Bucket]!
+	pagination: Pagination!
+}
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1264,6 +1311,9 @@ type RootMutation {
 	createOrderMethod(input: CreateOrderMethodInput!): OrderMethod
 	updateOrderMethod(input: UpdateOrderMethodInput!): OrderMethod
 	deleteOrderMethod(id: ID!): OrderMethod
+	createBucket(input: CreateBucketInput!): Bucket
+	updateBucket(input: UpdateBucketInput!): Bucket
+	deleteBucket(id: ID!): Bucket
 }
 
 type RootQuery {
@@ -1295,6 +1345,8 @@ type RootQuery {
 	getContragent(id: ID!): Contragent
 	listOrderMethods(filter: ModelOrderMethodFilterInput): ModelOrderMethodConnection
 	getOrderMethod(id: ID!): OrderMethod
+	listBuckets(filter: ModelBucketFilterInput): ModelBucketConnection
+	getBucket(id: ID!): Bucket
 }
 
 schema {

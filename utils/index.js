@@ -11,6 +11,7 @@ const WareHouse = require('./wareHouse')
 const Shop = require('./shop')
 const Contragent = require('./contragent')
 const OrderMethod = require('./orderMethod')
+const Bucket = require('./bucket')
 
 module.exports = {
   ...User,
@@ -26,4 +27,5 @@ module.exports = {
   ...Shop,
   ...Contragent,
   ...OrderMethod,
+  ...Bucket,
 }
