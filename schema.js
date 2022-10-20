@@ -1265,8 +1265,40 @@ input ModelBucketFilterInput {
 	limit: Int
   }
 
-  type ModelBucketConnection {
+type ModelBucketConnection {
 	items: [Bucket]!
+	pagination: Pagination!
+}
+
+type Favorites
+{
+  id: ID!
+  customerId: ID!
+  products: [String]
+}
+
+input CreateFavoritesInput {
+	id: ID
+	customerId: ID!
+	products: [String]
+}
+
+input UpdateFavoritesInput {
+	id: ID!
+	customerId: ID
+	products: [String]
+}
+
+input ModelFavoritesFilterInput {
+	id: String
+	customerId: String
+	products: [String]
+	page: Int
+	limit: Int
+}
+
+type ModelFavoritesConnection {
+	items: [Favorites]!
 	pagination: Pagination!
 }
 
@@ -1314,6 +1346,9 @@ type RootMutation {
 	createBucket(input: CreateBucketInput!): Bucket
 	updateBucket(input: UpdateBucketInput!): Bucket
 	deleteBucket(id: ID!): Bucket
+	createFavorites(input: CreateFavoritesInput!): Favorites
+	updateFavorites(input: UpdateFavoritesInput!): Favorites
+	deleteFavorites(id: ID!): Favorites
 }
 
 type RootQuery {
@@ -1347,6 +1382,8 @@ type RootQuery {
 	getOrderMethod(id: ID!): OrderMethod
 	listBuckets(filter: ModelBucketFilterInput): ModelBucketConnection
 	getBucket(id: ID!): Bucket
+	listFavorites(filter: ModelFavoritesFilterInput): ModelFavoritesConnection
+	getFavorites(id: ID!): Favorites
 }
 
 schema {

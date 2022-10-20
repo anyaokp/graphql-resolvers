@@ -98,6 +98,48 @@ app.use(
           console.log(err)
         }
       },
+      createFavorites: async (args) => {
+        try {
+          let result = await api.createFavorites(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listFavorites: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listFavorites(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getFavorites: async (args) => {
+        try {
+          let result = await api.getFavorites(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateFavorites: async (args) => {
+        try {
+          let result = await api.updateFavorites(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteFavorites: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteFavorites(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

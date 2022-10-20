@@ -12,6 +12,7 @@ const Shop = require('./shop')
 const Contragent = require('./contragent')
 const OrderMethod = require('./orderMethod')
 const Bucket = require('./bucket')
+const Favorite = require('./favorite')
 
 module.exports = {
   ...User,
@@ -28,4 +29,5 @@ module.exports = {
   ...Contragent,
   ...OrderMethod,
   ...Bucket,
+  ...Favorite,
 }
