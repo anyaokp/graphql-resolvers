@@ -1,94 +1,96 @@
-const mongoose = require('mongoose');
-const { USER_STATUSES } = require('../constants');
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
-	
+const { UserStatus } = require('../enums/index')
+
+const Schema = mongoose.Schema
+
 const UserSchema = new Schema({
   lastOrderDate: {
-    type: String
+    type: String,
   },
   lastName: {
     type: String,
-    required: true
+    required: true,
   },
   firstName: {
     type: String,
-    required: true
+    required: true,
   },
   patronymic: {
     type: String,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
-  position:  {
+  position: {
     type: String,
-    required: true
+    required: true,
   },
   phone: {
     type: String,
-    required: true
+    required: true,
   },
-  active:  {
+  active: {
     type: Boolean,
     default: false,
-    required: true
+    required: true,
   },
-  isAdmin:  {
+  isAdmin: {
     type: Boolean,
     default: false,
-    required: true
+    required: true,
   },
   groups: {
-    type: [{ type: String }]
+    type: [{ type: String }],
   },
-  emailAlert:  {
+  emailAlert: {
     type: Boolean,
     default: false,
-    required: true
+    required: true,
   },
-  alertsWithSound:  {
+  alertsWithSound: {
     type: Boolean,
     default: false,
-    required: true
+    required: true,
   },
-  online:  {
+  online: {
     type: Boolean,
     default: false,
-    required: true
+    required: true,
   },
   status: {
     type: String,
-    enum: USER_STATUSES,
-    require: true
+    enum: UserStatus,
+    require: true,
   },
-  averagCheck:  {
+  averagCheck: {
     type: Number,
     default: 0,
-    required: true
+    required: true,
   },
   salesAmount: {
     type: Number,
     default: 0,
-    required: true
+    required: true,
   },
   totalAmountOfOrders: {
     type: Number,
     default: 0,
-    required: true
+    required: true,
   },
-  //  orderNumbers: {
-  //    type: Array,
-  //  },
+  orderNumbers: [
+    {
+      type: String,
+    },
+  ],
   //  createdAt: String!
   //  updatedAt: String!
-});
-
+})
 
 // UserSchema.method('toJSON', function () {
 //   const { _id, __v, ...object } = this.toObject();
 //   return object;
 // });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema)

@@ -1,74 +1,75 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const graphqlHttp = require('express-graphql');
-const { buildSchema } = require('graphql');
-const mongoose = require('mongoose');
+const express = require('express')
+const bodyParser = require('body-parser')
+const graphqlHttp = require('express-graphql')
+const { buildSchema } = require('graphql')
+const mongoose = require('mongoose')
 const schema = require('./schema')
 const api = require('./utils')
-const app = express();
+const app = express()
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 app.use(
   '/graphql',
   graphqlHttp({
     schema: buildSchema(schema),
     rootValue: {
-      createUser: async (args) => {
+      createOrderMethod: async (args) => {
         try {
-          let user  = await api.createUser(args.input)
-          return user
-        } catch (err) {
-          console.log(err)
-        }
-      },
-      listUsers: async (args) => {
-        try {
-          const filter = args?.filter || {}
-          let result = await api.listUsers(filter)
+          let result = await api.createOrderMethod(args.input)
           return result
         } catch (err) {
           console.log(err)
         }
       },
-      getUser: async (args) => {
+      listOrderMethods: async (args) => {
         try {
-          let user = await api.getUser(args.id)
-          return user
+          const filter = args?.filter || {}
+          let result = await api.listOrderMethods(filter)
+          return result
         } catch (err) {
           console.log(err)
         }
       },
-      updateUser: async (args) => {
+      getOrderMethod: async (args) => {
         try {
-          let user = await api.updateUser(args.input)
-          return user
+          let result = await api.getOrderMethod(args.id)
+          return result
         } catch (err) {
           console.log(err)
         }
       },
-      deleteUser:  async (args) => {
+      updateOrderMethod: async (args) => {
+        try {
+          let result = await api.updateOrderMethod(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteOrderMethod: async (args) => {
         try {
           const { id } = args
-          let user = await api.deleteUser(id)
-          return user
+          let result = await api.deleteOrderMethod(id)
+          return result
         } catch (err) {
           console.log(err)
-        }  
-      }
+        }
+      },
     },
-    graphiql: true
+    graphiql: true,
   })
-);
+)
 
 mongoose
   .connect('mongodb://localhost/graphql', {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useFindAndModify: false,
   })
   .then(() => {
-    app.listen(3000);
+    app.listen(3000)
   })
-  .catch(err => {
-    console.log(err);
-  });
+  .catch((err) => {
+    console.log(err)
+  })
