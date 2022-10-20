@@ -11,6 +11,19 @@ const Shop = require('./shop')
 const User = require('./user')
 const UserGroup = require('./userGroup')
 const WareHouse = require('./wareHouse')
+const Bucket = require('./bucket')
+const Favorite = require('./favorite')
+const PriceType = require('./priceType')
+const Courier = require('./courier')
+const Unit = require('./unit')
+const CostGroup = require('./costGroup')
+const CostItem = require('./costItem')
+const StatusGroup = require('./statusGroup')
+const Status = require('./status')
+const GeneralSettings = require('./generalSettings')
+const TransitionStatuses = require('./transitionStatuses')
+const Filter = require('./filter')
+const PlatformSettings = require('./platformSettings')
 
 module.exports = {
   City,
@@ -26,4 +39,17 @@ module.exports = {
   User,
   UserGroup,
   WareHouse,
+  Bucket,
+  Favorite,
+  PriceType,
+  Courier,
+  Unit,
+  CostGroup,
+  CostItem,
+  StatusGroup,
+  Status,
+  GeneralSettings,
+  TransitionStatuses,
+  Filter,
+  PlatformSettings,
 }

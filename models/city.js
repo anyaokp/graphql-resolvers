@@ -6,7 +6,11 @@ const City = new Schema(
     countryId: { type: Schema.Types.ObjectId, required: true },
     regionId: { type: Schema.Types.ObjectId, required: true },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+City.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = model('City', City)

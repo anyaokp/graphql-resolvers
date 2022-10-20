@@ -16,7 +16,11 @@ const PaymentStatus = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+PaymentStatus.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = model('PaymentStatus', PaymentStatus)

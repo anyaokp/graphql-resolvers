@@ -14,7 +14,11 @@ const PaymentType = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+PaymentType.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = model('PaymentType', PaymentType)

@@ -23,7 +23,11 @@ const Contragent = new Schema(
     bankAccount: { type: String },
     bankAddress: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+Contragent.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = model('Contragent', Contragent)

@@ -26,7 +26,11 @@ const UserGroup = new Schema(
       enum: OrderAccess,
     },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+UserGroup.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = model('UserGroup', UserGroup)

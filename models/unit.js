@@ -1,18 +1,18 @@
 const { Schema, model } = require('mongoose')
 
-const OrderMethod = new Schema(
+const Unit = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
+    sym: { type: String, required: true },
     active: { type: Boolean },
-    defaultForCRM: { type: Boolean },
-    defaultForAPI: { type: Boolean },
+    default: { type: Boolean },
   },
   { timestamps: true, versionKey: false }
 )
 
-OrderMethod.virtual('id').get(function () {
+Unit.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('OrderMethod', OrderMethod)
+module.exports = model('Unit', Unit)

@@ -84,7 +84,11 @@ const DeliveryType = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+DeliveryType.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = model('DeliveryType', DeliveryType)

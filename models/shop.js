@@ -25,6 +25,11 @@ const Shop = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+Shop.virtual('id').get(function () {
+  return this._id
+})
+
 module.exports = model('Shop', Shop)

@@ -1,19 +1,22 @@
 const { Schema, model } = require('mongoose')
 
-const OrderType = new Schema(
+const { Type } = require('../enums')
+
+const StatusGroup = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
     active: { type: Boolean },
-    defaultForCRM: { type: Boolean },
-    defaultForAPI: { type: Boolean },
     ordering: { type: Number, required: true },
+    color: { type: String },
+    default: { type: Boolean },
+    type: { type: String, enum: Type },
   },
   { timestamps: true, versionKey: false }
 )
 
-OrderType.virtual('id').get(function () {
+StatusGroup.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('OrderType', OrderType)
+module.exports = model('StatusGroup', StatusGroup)

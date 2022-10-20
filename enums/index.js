@@ -127,6 +127,43 @@ const WarehousesAvailable = [
 
 const ContragentType = ['legal_entity', 'enterpreneur']
 
+const BasePrice = ['N', 'Y']
+
+const TypeExpanse = [
+  'fixed', //постоянные
+  'variables', //переменные
+]
+
+const SystemLanguage = ['R', 'E', 'S']
+
+const Type = ['default', 'custom']
+
+const StatusMatrix = [
+  'none', // Не использовать
+  'order_types_only', //Для типов заказов
+  'order_types_user_groups', // Для типов заказов и групп пользователей
+]
+
+const ProductsQuantity = [
+  'W', // Целое
+  'F', // Дробное
+]
+
+const WeightAccuracy = [
+  'G', // Граммы
+  'M', // Миллиграммы
+]
+
+const PrintingForms = [
+  'D', // Скачивать
+  'O', // Открывать
+]
+
+const Distribution = [
+  'do_not_assign', // не назначать
+  'assign_evenly', // назначить равномерно
+]
+
 module.exports = {
   Rights,
   OrderAccess,
@@ -141,4 +178,13 @@ module.exports = {
   ResidueType,
   WarehousesAvailable,
   ContragentType,
+  BasePrice,
+  TypeExpanse,
+  Type,
+  SystemLanguage,
+  StatusMatrix,
+  ProductsQuantity,
+  WeightAccuracy,
+  PrintingForms,
+  Distribution,
 }

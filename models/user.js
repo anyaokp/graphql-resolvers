@@ -89,7 +89,11 @@ const UserSchema = new Schema(
     // createdAt: String!
     // updatedAt: String!
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+User.virtual('id').get(function () {
+  return this._id
+})
 
 module.exports = mongoose.model('User', UserSchema)

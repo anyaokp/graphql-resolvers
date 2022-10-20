@@ -36,6 +36,11 @@ const WareHouse = new Schema(
     phone: { type: String },
     email: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
+
+WareHouse.virtual('id').get(function () {
+  return this._id
+})
+
 module.exports = model('WareHouse', WareHouse)
