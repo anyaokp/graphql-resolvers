@@ -392,6 +392,48 @@ app.use(
           console.log(err)
         }
       },
+      createStatus: async (args) => {
+        try {
+          let result = await api.createStatus(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listStatuses: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listStatuses(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getStatus: async (args) => {
+        try {
+          let result = await api.getStatus(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateStatus: async (args) => {
+        try {
+          let result = await api.updateStatus(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteStatus: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteStatus(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

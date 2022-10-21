@@ -1636,6 +1636,50 @@ type ModelStatusGroupConnection {
 	pagination: Pagination!
  }
 
+type Status
+{
+ id: ID!
+ name: String!
+ code: String!
+ active: Boolean
+ ordering: Int!
+ group: ID!
+ groupInfo: StatusGroup
+}
+
+input CreateStatusInput {
+	id: ID
+	name: String!
+	code: String!
+	active: Boolean
+	ordering: Int!
+	group: ID!
+  }
+
+input UpdateStatusInput {
+	id: ID!
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	group: ID
+  }
+
+input ModelStatusFilterInput {
+	id: String
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	group: String
+	page: Int
+	limit: Int
+}
+
+type ModelStatusConnection {
+	items: [Status]!
+	pagination: Pagination!
+ }
 
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
@@ -1702,6 +1746,9 @@ type RootMutation {
 	createStatusGroup(input: CreateStatusGroupInput!): StatusGroup
 	updateStatusGroup(input: UpdateStatusGroupInput!): StatusGroup
 	deleteStatusGroup(id: ID!): StatusGroup
+	createStatus(input: CreateStatusInput!): Status
+	updateStatus(input: UpdateStatusInput!): Status
+	deleteStatus(id: ID!): Status
 }
 
 type RootQuery {
@@ -1749,6 +1796,8 @@ type RootQuery {
 	getCostItem(id: ID!): CostItem
 	listStatusGroups(filter: ModelStatusGroupFilterInput): ModelStatusGroupConnection
 	getStatusGroup(id: ID!): StatusGroup
+	listStatuses(filter: ModelStatusFilterInput): ModelStatusConnection
+	getStatus(id: ID!): Status
 }
 
 schema {
