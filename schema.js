@@ -1378,6 +1378,57 @@ type ModelPriceTypeConnection {
 		pagination: Pagination!
 	}
 
+type Courier {
+	id: ID!
+	lastName: String
+	firstName: String!
+	patronymic: String
+	email: String
+	phone: String
+	active: Boolean
+	description: String
+  }
+
+input CreateCourierInput {
+	id: ID
+	lastName: String
+	firstName: String!
+	patronymic: String
+	email: String
+	phone: String
+	active: Boolean
+	description: String
+}
+
+input UpdateCourierInput {
+	id: ID!
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	phone: String
+	active: Boolean
+	description: String
+}
+
+input ModelCourierFilterInput {
+	id: String
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	phone: String
+	active: Boolean
+	description: String
+	page: Int
+	limit: Int
+}
+
+type ModelCourierConnection {
+	items: [Courier]!
+	pagination: Pagination!
+}
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1428,6 +1479,9 @@ type RootMutation {
 	createPriceType(input: CreatePriceTypeInput!): PriceType
 	updatePriceType(input: UpdatePriceTypeInput!): PriceType
 	deletePriceType(id: ID!): PriceType
+	createCourier(input: CreateCourierInput!): Courier
+	updateCourier(input: UpdateCourierInput!): Courier
+	deleteCourier(id: ID!): Courier
 }
 
 type RootQuery {
@@ -1465,6 +1519,8 @@ type RootQuery {
 	getFavorites(id: ID!): Favorites
 	listPriceTypes(filter: ModelPriceTypeFilterInput): ModelPriceTypeConnection
 	getPriceType(id: ID!): PriceType
+	listCouriers(filter: ModelCourierFilterInput): ModelCourierConnection
+	getCourier(id: ID!): Courier
 }
 
 schema {

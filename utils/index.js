@@ -14,6 +14,7 @@ const OrderMethod = require('./orderMethod')
 const Bucket = require('./bucket')
 const Favorite = require('./favorite')
 const PriceType = require('./priceType')
+const Courier = require('./courier')
 
 module.exports = {
   ...User,
@@ -32,4 +33,5 @@ module.exports = {
   ...Bucket,
   ...Favorite,
   ...PriceType,
+  ...Courier,
 }

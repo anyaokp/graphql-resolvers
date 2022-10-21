@@ -182,6 +182,48 @@ app.use(
           console.log(err)
         }
       },
+      createCourier: async (args) => {
+        try {
+          let result = await api.createCourier(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listCouriers: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listCouriers(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getCourier: async (args) => {
+        try {
+          let result = await api.getCourier(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateCourier: async (args) => {
+        try {
+          let result = await api.updateCourier(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteCourier: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteCourier(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })
