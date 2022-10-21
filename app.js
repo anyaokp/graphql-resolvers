@@ -224,7 +224,6 @@ app.use(
           console.log(err)
         }
       },
-
       createUnit: async (args) => {
         try {
           let result = await api.createUnit(args.input)
@@ -262,6 +261,48 @@ app.use(
         try {
           const { id } = args
           let result = await api.deleteUnit(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createCostGroup: async (args) => {
+        try {
+          let result = await api.createCostGroup(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listCostGroups: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listCostGroups(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getCostGroup: async (args) => {
+        try {
+          let result = await api.getCostGroup(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateCostGroup: async (args) => {
+        try {
+          let result = await api.updateCostGroup(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteCostGroup: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteCostGroup(id)
           return result
         } catch (err) {
           console.log(err)

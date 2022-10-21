@@ -1474,6 +1474,50 @@ type ModelUnitConnection {
 	pagination: Pagination!
 }
 
+type CostGroup
+{
+  id: ID!
+  name: String!
+  code: String!
+  active: Boolean
+  ordering: Int
+  color: String
+}
+
+input CreateCostGroupInput {
+	id: ID
+	name: String!
+	code: String!
+	active: Boolean
+	ordering: Int
+	color: String
+}
+
+input UpdateCostGroupInput {
+	id: ID!
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	color: String
+}
+
+input ModelCostGroupFilterInput {
+	id: String
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	color: String
+	page: Int
+	limit: Int
+}
+
+type ModelCostGroupConnection {
+	items: [CostGroup]!
+	pagination: Pagination!
+ }
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1530,6 +1574,9 @@ type RootMutation {
 	createUnit(input: CreateUnitInput!): Unit
 	updateUnit(input: UpdateUnitInput!): Unit
 	deleteUnit(id: ID!): Unit
+	createCostGroup(input: CreateCostGroupInput!): CostGroup
+	updateCostGroup(input: UpdateCostGroupInput!): CostGroup
+	deleteCostGroup(id: ID!): CostGroup
 }
 
 type RootQuery {
@@ -1571,6 +1618,8 @@ type RootQuery {
 	getCourier(id: ID!): Courier
 	listUnits(filter: ModelUnitFilterInput): ModelUnitConnection
 	getUnit(id: ID!): Unit
+	listCostGroups(filter: ModelCostGroupFilterInput): ModelCostGroupConnection
+	getCostGroup(id: ID!): CostGroup
 }
 
 schema {
