@@ -434,6 +434,48 @@ app.use(
           console.log(err)
         }
       },
+      createGeneralSettings: async (args) => {
+        try {
+          let result = await api.createGeneralSettings(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listGeneralSettings: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listGeneralSettings(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getGeneralSettings: async (args) => {
+        try {
+          let result = await api.getGeneralSettings(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateGeneralSettings: async (args) => {
+        try {
+          let result = await api.updateGeneralSettings(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteGeneralSettings: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteGeneralSettings(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

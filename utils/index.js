@@ -20,6 +20,7 @@ const CostGroup = require('./costGroup')
 const CostItem = require('./costItem')
 const StatusGroup = require('./statusGroup')
 const Status = require('./status')
+const GeneralSettings = require('./generalSettings')
 
 module.exports = {
   ...User,
@@ -44,4 +45,5 @@ module.exports = {
   ...CostItem,
   ...StatusGroup,
   ...Status,
+  ...GeneralSettings,
 }

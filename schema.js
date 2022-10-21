@@ -1681,6 +1681,125 @@ type ModelStatusConnection {
 	pagination: Pagination!
  }
 
+type GeneralSettings
+{
+ id: ID!
+ company: String!
+ systemLanguage: SystemLanguage!
+ listAvailableCountries: [String]
+ defaultCurrency: String!
+ timeZone: String!
+ statusMatrix: StatusMatrix!
+ workingTime: [WorkTime]
+ noWorkingDates: [String]
+ ipRestriction: String
+ twoFactorAuth: String!
+ productsQuantity: ProductsQuantity!
+ weightAccuracy: WeightAccuracy!
+ printingForms: PrintingForms!
+
+}
+
+enum SystemLanguage {
+	R # русский
+	E # английский
+	S # испанский
+  }
+  
+enum StatusMatrix {
+	none # Не использовать
+	order_types_only # Для типов заказов
+	order_types_user_groups # Для типов заказов и групп пользователей
+  }
+  
+type WorkTime {
+	daysOfWeek: [Days]
+	startTime: String
+	endTime: String
+	lunchStartTime: String
+	lunchEndTime: String
+  }
+
+enum ProductsQuantity {
+	W # Целое
+	F # Дробное
+  }
+
+enum WeightAccuracy {
+	G # Граммы
+	M # Миллиграммы
+  }
+  
+enum PrintingForms {
+	D # Скачивать
+	O # Открывать
+  }
+
+input CreateGeneralSettingsInput {
+	id: ID
+	company: String!
+	systemLanguage: SystemLanguage!
+	listAvailableCountries: [String]
+	defaultCurrency: String!
+	timeZone: String!
+	statusMatrix: StatusMatrix!
+	workingTime: [WorkTimeInput]
+	noWorkingDates: [String]
+	ipRestriction: String
+	twoFactorAuth: String!
+	productsQuantity: ProductsQuantity!
+	weightAccuracy: WeightAccuracy!
+	printingForms: PrintingForms!
+  }
+
+input UpdateGeneralSettingsInput {
+	id: ID!
+	company: String
+	systemLanguage: SystemLanguage
+	listAvailableCountries: [String]
+	defaultCurrency: String
+	timeZone: String
+	statusMatrix: StatusMatrix
+	workingTime: [WorkTimeInput]
+	noWorkingDates: [String]
+	ipRestriction: String
+	twoFactorAuth: String
+	productsQuantity: ProductsQuantity
+	weightAccuracy: WeightAccuracy
+	printingForms: PrintingForms
+  }
+
+input WorkTimeInput {
+	daysOfWeek: [Days]
+	startTime: String
+	endTime: String
+	lunchStartTime: String
+	lunchEndTime: String
+  }
+
+input ModelGeneralSettingsFilterInput {
+	id: ID
+	company: String
+	systemLanguage: SystemLanguage
+	listAvailableCountries: [String]
+	defaultCurrency: String
+	timeZone: String
+	statusMatrix: StatusMatrix
+	noWorkingDates: [String]
+	ipRestriction: String
+	twoFactorAuth: String
+	productsQuantity: ProductsQuantity
+	weightAccuracy: WeightAccuracy
+	printingForms: PrintingForms
+	page: Int
+	limit: Int
+  }
+
+type ModelGeneralSettingsConnection {
+	items: [GeneralSettings]!
+	pagination: Pagination!
+ }
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1749,6 +1868,9 @@ type RootMutation {
 	createStatus(input: CreateStatusInput!): Status
 	updateStatus(input: UpdateStatusInput!): Status
 	deleteStatus(id: ID!): Status
+	createGeneralSettings(input: CreateGeneralSettingsInput!): GeneralSettings
+	updateGeneralSettings(input: UpdateGeneralSettingsInput!): GeneralSettings
+	deleteGeneralSettings(id: ID!): GeneralSettings
 }
 
 type RootQuery {
@@ -1798,6 +1920,8 @@ type RootQuery {
 	getStatusGroup(id: ID!): StatusGroup
 	listStatuses(filter: ModelStatusFilterInput): ModelStatusConnection
 	getStatus(id: ID!): Status
+	listGeneralSettings(filter: ModelGeneralSettingsFilterInput): ModelGeneralSettingsConnection
+	getGeneralSettings(id: ID!): GeneralSettings
 }
 
 schema {
