@@ -1561,12 +1561,12 @@ input UpdateCostItemInput {
   }
 
 input ModelCostItemFilterInput {
-	id: ID
+	id: String
 	name: String
 	code: String
 	active: Boolean
 	ordering: Int
-	group: ID
+	group: String
 	type: TypeExpanse
 	appliesToOrders: Boolean
 	appliesToUsers: Boolean
@@ -1578,6 +1578,64 @@ type ModelCostItemConnection {
 	items: [CostItem]!
 	pagination: Pagination!
  }
+
+type StatusGroup
+{
+ id: ID!
+ name: String!
+ code: String!
+ active: Boolean
+ ordering: Int!
+ color: String
+ default: Boolean
+ type: Type
+}
+
+enum Type {
+ default
+ custom
+}
+
+input CreateStatusGroupInput {
+	id: ID
+	name: String!
+	code: String!
+	active: Boolean
+	ordering: Int
+	color: String
+	default: Boolean
+	type: Type
+  }
+
+input UpdateStatusGroupInput {
+	id: ID!
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	color: String
+	default: Boolean
+	type: Type
+  }
+
+input ModelStatusGroupFilterInput {
+	id: String
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	color: String
+	default: Boolean
+	type: Type
+	page: Int
+	limit: Int
+  }
+
+type ModelStatusGroupConnection {
+	items: [StatusGroup]!
+	pagination: Pagination!
+ }
+
 
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
@@ -1641,6 +1699,9 @@ type RootMutation {
 	createCostItem(input: CreateCostItemInput!): CostItem
 	updateCostItem(input: UpdateCostItemInput!): CostItem
 	deleteCostItem(id: ID!): CostItem
+	createStatusGroup(input: CreateStatusGroupInput!): StatusGroup
+	updateStatusGroup(input: UpdateStatusGroupInput!): StatusGroup
+	deleteStatusGroup(id: ID!): StatusGroup
 }
 
 type RootQuery {
@@ -1686,6 +1747,8 @@ type RootQuery {
 	getCostGroup(id: ID!): CostGroup
 	listCostItems(filter: ModelCostItemFilterInput): ModelCostItemConnection
 	getCostItem(id: ID!): CostItem
+	listStatusGroups(filter: ModelStatusGroupFilterInput): ModelStatusGroupConnection
+	getStatusGroup(id: ID!): StatusGroup
 }
 
 schema {

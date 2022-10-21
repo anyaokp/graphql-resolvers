@@ -350,6 +350,48 @@ app.use(
           console.log(err)
         }
       },
+      createStatusGroup: async (args) => {
+        try {
+          let result = await api.createStatusGroup(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listStatusGroups: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listStatusGroups(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getStatusGroup: async (args) => {
+        try {
+          let result = await api.getStatusGroup(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateStatusGroup: async (args) => {
+        try {
+          let result = await api.updateStatusGroup(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteStatusGroup: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteStatusGroup(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

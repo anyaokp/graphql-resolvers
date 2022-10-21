@@ -18,6 +18,7 @@ const Courier = require('./courier')
 const Unit = require('./unit')
 const CostGroup = require('./costGroup')
 const CostItem = require('./costItem')
+const StatusGroup = require('./statusGroup')
 
 module.exports = {
   ...User,
@@ -40,4 +41,5 @@ module.exports = {
   ...Unit,
   ...CostGroup,
   ...CostItem,
+  ...StatusGroup,
 }
