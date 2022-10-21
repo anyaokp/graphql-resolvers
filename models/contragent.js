@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { VatRate, ContragentType } = require('../enums/index')
+const { VatRate, ContragentType } = require('../constants/index')
 
 const Contragent = new Schema(
   {

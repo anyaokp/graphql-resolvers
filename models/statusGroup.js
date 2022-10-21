@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { Type } = require('../enums')
+const { Type } = require('../constants')
 
 const StatusGroup = new Schema(
   {

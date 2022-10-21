@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { Rights, OrderAccess } = require('../enums/index')
+const { Rights, OrderAccess } = require('../constants/index')
 
 const UserGroup = new Schema(
   {

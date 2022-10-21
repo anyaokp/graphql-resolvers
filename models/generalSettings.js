@@ -7,7 +7,7 @@ const {
   ProductsQuantity,
   WeightAccuracy,
   PrintingForms,
-} = require('../enums')
+} = require('../constants')
 
 const GeneralSettings = new Schema(
   {

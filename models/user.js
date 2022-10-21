@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { UserStatus } = require('../enums/index')
+const { UserStatus } = require('../constants/index')
 
 const Schema = mongoose.Schema
 

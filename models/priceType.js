@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { BasePrice } = require('../enums')
+const { BasePrice } = require('../constants')
 
 const PriceType = new Schema(
   {

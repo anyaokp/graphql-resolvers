@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { Distribution } = require('../enums')
+const { Distribution } = require('../constants')
 
 const PlatformSettings = new Schema(
   {

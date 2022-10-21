@@ -7,7 +7,7 @@ const {
   NetValueType,
   Days,
   CalculationType,
-} = require('../enums/index')
+} = require('../constants/index')
 
 const DeliveryType = new Schema(
   {

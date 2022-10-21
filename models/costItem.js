@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { TypeExpanse } = require('../enums')
+const { TypeExpanse } = require('../constants')
 
 const CostItem = new Schema(
   {

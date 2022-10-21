@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { WarehousesAvailable } = require('../enums/index')
+const { WarehousesAvailable } = require('../constants/index')
 
 const Shop = new Schema(
   {
