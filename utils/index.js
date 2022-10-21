@@ -23,6 +23,7 @@ const Status = require('./status')
 const GeneralSettings = require('./generalSettings')
 const TransitionStatuses = require('./transitionStatuses')
 const Filter = require('./filter')
+const PlatformSettings = require('./platformSettings')
 
 module.exports = {
   ...User,
@@ -50,4 +51,5 @@ module.exports = {
   ...GeneralSettings,
   ...TransitionStatuses,
   ...Filter,
+  ...PlatformSettings,
 }

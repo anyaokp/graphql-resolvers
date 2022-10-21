@@ -1887,6 +1887,42 @@ type ModelFilterConnection {
 	pagination: Pagination!
  }
 
+type PlatformSettings {
+  id: ID!
+  distribution: Distribution
+  emailNotification: Boolean
+}
+
+enum Distribution {
+  do_not_assign
+  assign_evenly
+}
+
+input CreatePlatformSettingsInput {
+	id: ID
+	distribution: Distribution
+  	emailNotification: Boolean
+}
+
+input UpdatePlatformSettingsInput {
+	id: ID!
+	distribution: Distribution
+  	emailNotification: Boolean
+}
+
+input ModelPlatformSettingsFilterInput {
+	id: String
+	distribution: Distribution
+  	emailNotification: Boolean
+	page: Int
+	limit: Int
+}
+
+type ModelPlatformSettingsConnection {
+	items: [PlatformSettings]!
+	pagination: Pagination!
+ }
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1964,6 +2000,9 @@ type RootMutation {
 	createFilter(input: CreateFilterInput!): Filter
 	updateFilter(input: UpdateFilterInput!): Filter
 	deleteFilter(id: ID!): Filter
+	createPlatformSettings(input: CreatePlatformSettingsInput!): PlatformSettings
+	updatePlatformSettings(input: CreatePlatformSettingsInput!): PlatformSettings
+	deletePlatformSettings(id: ID!): PlatformSettings
 }
 
 type RootQuery {
@@ -2019,6 +2058,8 @@ type RootQuery {
 	getTransitionStatuses(id: ID!): TransitionStatuses
 	listFilters(filter: ModelFilterFilterInput): ModelFilterConnection
 	getFilter(id: ID!): Filter
+	listPlatformSettings(filter: ModelPlatformSettingsFilterInput): ModelPlatformSettingsConnection
+	getPlatformSettings(id: ID!): PlatformSettings
 }
 
 schema {

@@ -560,6 +560,48 @@ app.use(
           console.log(err)
         }
       },
+      createPlatformSettings: async (args) => {
+        try {
+          let result = await api.createPlatformSettings(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listPlatformSettings: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listPlatformSettings(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getPlatformSettings: async (args) => {
+        try {
+          let result = await api.getPlatformSettings(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updatePlatformSettings: async (args) => {
+        try {
+          let result = await api.updatePlatformSettings(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deletePlatformSettings: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deletePlatformSettings(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })
