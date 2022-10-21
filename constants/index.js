@@ -1,4 +1,4 @@
-const Rights = [
+const RIGHTS = [
   'ROLE_ORDER_VIEW',
   'ROLE_ORDER_CREATE',
   'ROLE_ORDER_EDIT',
@@ -64,22 +64,22 @@ const Rights = [
   'ROLE_TELEPHONY_CALL_VIEW_ALL',
 ]
 
-const OrderAccess = [
+const ORDERACCESS = [
   'full', // ко всем заказам и клиентам
   'only_mine', // только к своим заказам и клиентам
   'by_order_types_and_sites', // только к заказам и клиентам указанных
 ]
 
-const UserStatus = ['free', 'busy', 'dinner', 'break']
+const USERSTATUS = ['free', 'busy', 'dinner', 'break']
 
-const IntegrationCode = [
+const INTEGRATIONCODE = [
   'W', // без интеграции
   'D', // доставка курьером
 ]
 
-const CountryCode = ['RU', 'UA', 'BY', 'KZ']
+const COUNTRYCODE = ['RU', 'UA', 'BY', 'KZ']
 
-const VatRate = [
+const VATRATE = [
   'WITHOUT_NDS', // Без НДС
   'TN', // 20%
   'EI', // 18%
@@ -90,18 +90,18 @@ const VatRate = [
   'NU', // 0%
 ]
 
-const CalculationType = [
+const CALCULATIONTYPE = [
   'S', // Static
   'D', // Dynamic
 ]
 
-const NetValueType = [
+const NETVALUETYPE = [
   'fixed', // фиксированная
   'subtract', // стоимость минус
   'subtract_percent', // стоимость минус  %
 ]
 
-const Days = [
+const DAYS = [
   'Mo', // Понедельник
   'Tu', // Вторник
   'We', // Среда
@@ -111,80 +111,80 @@ const Days = [
   'Su', // Воскресенье
 ]
 
-const TypeWarehouse = [
+const TYPEWAREHOUSE = [
   'store_type_retail', // розничный магазин
   'store_type_online', // интернет-магазин
   'store_type_warehouse', // склад
   'store_type_supplier', //склад поставщика
 ]
 
-const ResidueType = ['numerical', 'cash']
+const RESIDUETYPE = ['numerical', 'cash']
 
-const WarehousesAvailable = [
+const WAREHOUSESAVAILABLE = [
   'Y', // да
   'N', // нет
 ]
 
-const ContragentType = ['legal_entity', 'enterpreneur']
+const CONTRAGENTTYPE = ['legal_entity', 'enterpreneur']
 
-const BasePrice = ['N', 'Y']
+const BASEPRICE = ['N', 'Y']
 
-const TypeExpanse = [
+const TYPEEXPANSE = [
   'fixed', //постоянные
   'variables', //переменные
 ]
 
-const SystemLanguage = ['R', 'E', 'S']
+const SYSTEMLANGUAGE = ['R', 'E', 'S']
 
-const Type = ['default', 'custom']
+const TYPE = ['default', 'custom']
 
-const StatusMatrix = [
+const STATUSMATRIX = [
   'none', // Не использовать
   'order_types_only', //Для типов заказов
   'order_types_user_groups', // Для типов заказов и групп пользователей
 ]
 
-const ProductsQuantity = [
+const PRODUCTSQUANTITY = [
   'W', // Целое
   'F', // Дробное
 ]
 
-const WeightAccuracy = [
+const WEIGHTACCURACY = [
   'G', // Граммы
   'M', // Миллиграммы
 ]
 
-const PrintingForms = [
+const PRINTINGFORMS = [
   'D', // Скачивать
   'O', // Открывать
 ]
 
-const Distribution = [
+const DISTRIBUTION = [
   'do_not_assign', // не назначать
   'assign_evenly', // назначить равномерно
 ]
 
 module.exports = {
-  Rights,
-  OrderAccess,
-  UserStatus,
-  IntegrationCode,
-  CountryCode,
-  VatRate,
-  CalculationType,
-  NetValueType,
-  Days,
-  TypeWarehouse,
-  ResidueType,
-  WarehousesAvailable,
-  ContragentType,
-  BasePrice,
-  TypeExpanse,
-  Type,
-  SystemLanguage,
-  StatusMatrix,
-  ProductsQuantity,
-  WeightAccuracy,
-  PrintingForms,
-  Distribution,
+  RIGHTS,
+  ORDERACCESS,
+  USERSTATUS,
+  INTEGRATIONCODE,
+  COUNTRYCODE,
+  VATRATE,
+  CALCULATIONTYPE,
+  NETVALUETYPE,
+  DAYS,
+  TYPEWAREHOUSE,
+  RESIDUETYPE,
+  WAREHOUSESAVAILABLE,
+  CONTRAGENTTYPE,
+  BASEPRICE,
+  TYPEEXPANSE,
+  TYPE,
+  SYSTEMLANGUAGE,
+  STATUSMATRIX,
+  PRODUCTSQUANTITY,
+  WEIGHTACCURACY,
+  PRINTINGFORMS,
+  DISTRIBUTION,
 }
