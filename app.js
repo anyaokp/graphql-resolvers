@@ -476,6 +476,48 @@ app.use(
           console.log(err)
         }
       },
+      createTransitionStatuses: async (args) => {
+        try {
+          let result = await api.createTransitionStatuses(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listTransitionStatuses: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listTransitionStatuses(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getTransitionStatuses: async (args) => {
+        try {
+          let result = await api.getTransitionStatuses(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateTransitionStatuses: async (args) => {
+        try {
+          let result = await api.updateTransitionStatuses(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteTransitionStatuses: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteTransitionStatuses(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

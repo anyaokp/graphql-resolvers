@@ -21,6 +21,7 @@ const CostItem = require('./costItem')
 const StatusGroup = require('./statusGroup')
 const Status = require('./status')
 const GeneralSettings = require('./generalSettings')
+const TransitionStatuses = require('./transitionStatuses')
 
 module.exports = {
   ...User,
@@ -46,4 +47,5 @@ module.exports = {
   ...StatusGroup,
   ...Status,
   ...GeneralSettings,
+  ...TransitionStatuses,
 }

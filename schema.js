@@ -1800,6 +1800,44 @@ type ModelGeneralSettingsConnection {
 	pagination: Pagination!
  }
 
+type TransitionStatuses
+{
+  id: ID!
+  orderTypeId: ID
+  orderType: OrderType
+  userGroupId: ID
+  userGroup: UserGroup
+  matrix: String
+}
+
+input CreateTransitionStatusesInput {
+	id: ID
+	orderTypeId: ID
+	userGroupId: ID
+	matrix: String
+  }
+
+input UpdateTransitionStatusesInput {
+	id: ID!
+	orderTypeId: ID
+	userGroupId: ID
+	matrix: String
+  }
+
+input ModelTransitionStatusesFilterInput {
+	id: String
+	orderTypeId: String
+	userGroupId: String
+	matrix: String
+	page: Int
+	limit: Int
+}
+
+type ModelTransitionStatusesConnection {
+	items: [TransitionStatuses]!
+	pagination: Pagination!
+ }
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1871,6 +1909,9 @@ type RootMutation {
 	createGeneralSettings(input: CreateGeneralSettingsInput!): GeneralSettings
 	updateGeneralSettings(input: UpdateGeneralSettingsInput!): GeneralSettings
 	deleteGeneralSettings(id: ID!): GeneralSettings
+	createTransitionStatuses(input: CreateTransitionStatusesInput!): TransitionStatuses
+	updateTransitionStatuses(input: UpdateTransitionStatusesInput!): TransitionStatuses
+	deleteTransitionStatuses(id: ID!): TransitionStatuses
 }
 
 type RootQuery {
@@ -1922,6 +1963,8 @@ type RootQuery {
 	getStatus(id: ID!): Status
 	listGeneralSettings(filter: ModelGeneralSettingsFilterInput): ModelGeneralSettingsConnection
 	getGeneralSettings(id: ID!): GeneralSettings
+	listTransitionStatuses(filter: ModelTransitionStatusesFilterInput): ModelTransitionStatusesConnection
+	getTransitionStatuses(id: ID!): TransitionStatuses
 }
 
 schema {
