@@ -1,146 +1,138 @@
+# type Country @model
+# @auth (
+#   rules: [
+#     { allow: private, provider: userPools, operations: [read, update, delete, create] }
+#   ]
+# ){
+#   id: ID,
+#   name: String
+# }
 
+# type Region @model
+# @auth (
+#   rules: [
+#     { allow: private, provider: userPools, operations: [read, update, delete, create] }
+#   ]
+# ){
+#   countryId: ID!
+#   id: ID,
+#   name: String
+# }
 
-type Country @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
-  id: ID,
-  name: String
-}
+# type City @model
+# @auth (
+#   rules: [
+#     { allow: private, provider: userPools, operations: [read, update, delete, create] }
+#   ]
+# ){
+#   countryId: ID!
+#   regionId: ID!
+#   id: ID,
+#   name: String
+# }
 
+# type Bucket @model
+# @auth (
+#   rules: [
+#     { allow: public, provider: apiKey, operations: [read, update, delete, create] }
+#     { allow: private, provider: userPools, operations: [read, update, delete, create] }
+#   ]
+# )
+# {
+#   id: ID!
+#   customerId:  ID! @index(name: "byCustomer", queryField: "bucketByCustomer")
+#   customer:  Customer! @belongsTo(fields: ["customerId"])
+#   products: [BucketItem]
+# }
 
-type Region @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
-  countryId: ID!
-  id: ID,
-  name: String
-}
+# type BucketItem{
+#   productId: ID!
+#   configurationId: String
+#   weight: String
+#   promotionId: String
+#   quantity: Int!
+# }
 
+# type Favorites @model
+# @auth (
+#   rules: [
+#     { allow: public, provider: apiKey, operations: [read, update, delete, create] }
+#     { allow: private, provider: userPools, operations: [read, update, delete, create] }
+#   ]
+# )
+# {
+#   id: ID!
+#   customerId:  ID! @index(name: "byCustomer", queryField: "favouritesByCustomer")
+#   customer:  Customer! @belongsTo(fields: ["customerId"])
+#   products: [String]
+# }
 
-type City @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
-  countryId: ID!
-  regionId: ID!
-  id: ID,
-  name: String
-}
-
-
-type Bucket @model
-@auth (
-  rules: [
-    { allow: public, provider: apiKey, operations: [read, update, delete, create] }
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-)
-{
-  id: ID!
-  customerId:  ID! @index(name: "byCustomer", queryField: "bucketByCustomer")
-  customer:  Customer! @belongsTo(fields: ["customerId"])
-  products: [BucketItem]
-}
-
-type BucketItem{
-  productId: ID!
-  configurationId: String
-  weight: String
-  promotionId: String
-  quantity: Int!
-}
-
-type Favorites @model
-@auth (
-  rules: [
-    { allow: public, provider: apiKey, operations: [read, update, delete, create] }
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-)
-{
-  id: ID!
-  customerId:  ID! @index(name: "byCustomer", queryField: "favouritesByCustomer")
-  customer:  Customer! @belongsTo(fields: ["customerId"])
-  products: [String]
-}
-
-enum CustomerStatus{
+enum CustomerStatus {
   vip
   bad
 }
 
-type EntityInfo{
-   legalName: String
-   fax: String
-   INN: String 
-   KPP: String
-   legalAddress: String
-   OKPO: String
-   OKONH: String
-   checkingAccount: String
-   corrAccount: String
-   BIK: String
+type EntityInfo {
+  legalName: String
+  fax: String
+  INN: String
+  KPP: String
+  legalAddress: String
+  OKPO: String
+  OKONH: String
+  checkingAccount: String
+  corrAccount: String
+  BIK: String
 }
 
-type Address{
+type Address {
   index: String
-  country: String 
+  country: String
   region: String
   city: String
   street: String
-  structure: String  # Строение
-  entrance: String   # Подъезд
-  flat: String       # Квартира
-  floor: Int         # этаж
-  house: String      # дом 
-  housing: String    # корпус
-  metro: String 
-  notes: String 
+  structure: String # Строение
+  entrance: String # Подъезд
+  flat: String # Квартира
+  floor: Int # этаж
+  house: String # дом
+  housing: String # корпус
+  metro: String
+  notes: String
   text: String
   intercomCode: String
   isFlat: Boolean
   isOffice: Boolean
 }
 
-type Tags{
-   name: String
-   color: String
+type Tags {
+  name: String
+  color: String
 }
 
-enum Sex{
-    M   #Мужской
-    W   #Женский
+enum Sex {
+  M #Мужской
+  W #Женский
 }
 
-enum EmailMarketingUnsubscribedAt{
-  S   #Подписан
-  U  # Отписался
+enum EmailMarketingUnsubscribedAt {
+  S #Подписан
+  U # Отписался
 }
 
-
-type OfferProduct{
-  price: String,
-  prod: String,
-  externalCode: String
-
-}
-
-type AnalogProduct{
-  price: String,
-  prod: String,
+type OfferProduct {
+  price: String
+  prod: String
   externalCode: String
 }
 
+type AnalogProduct {
+  price: String
+  prod: String
+  externalCode: String
+}
 
-enum FilterFields{
+enum FilterFields {
   tasksCounts
   sources
   keywords
@@ -204,61 +196,66 @@ enum FilterFields{
   shipped
 }
 
+# type PriceType @model
+# @auth (
+#   rules: [
+#     { allow: private, provider: userPools, operations: [read, update, delete, create] }
+#   ]
+# ){
+#   id: ID!
+#   name: String!
+#   code: String!
+#   active: Boolean
+#   isPromotionalPrice: Boolean
+#   basePrice: BasePrice
+#   ordering: Int
+#   description: String
+#   groups: [String]     # строка - characterCode группы
+#   filterExpression: String
+#   geo: RegionalRestrictions
+# }
 
-
-type PriceType @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
-  id: ID!
-  name: String!
-  code: String!
-  active: Boolean
-  isPromotionalPrice: Boolean
-  basePrice: BasePrice
-  ordering: Int
-  description: String
-  groups: [String]     # строка - characterCode группы
-  filterExpression: String
-  geo: RegionalRestrictions
-}
-
-enum BasePrice{
+enum BasePrice {
   N #no
   Y #yes
 }
 
-type RegionalRestrictions{
-  location:  [LocationItem]
+type RegionalRestrictions {
+  location: [LocationItem]
 }
 
-
-
-type Courier @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type Courier
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   lastName: String
   firstName: String!
-  patronymic: String 
+  patronymic: String
   email: String
   phone: String
   active: Boolean
   description: String
 }
 
-
-type Unit @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type Unit
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
   code: String!
@@ -267,13 +264,17 @@ type Unit @model
   default: Boolean
 }
 
-
-type CostGroup @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type CostGroup
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
   code: String!
@@ -282,13 +283,17 @@ type CostGroup @model
   color: String
 }
 
-
-type CostItem @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type CostItem
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
   code: String!
@@ -297,16 +302,16 @@ type CostItem @model
   group: ID!
   type: TypeExpanse!
   appliesToOrders: Boolean
-  appliesToUsers: Boolean,
+  appliesToUsers: Boolean
   # source: Source
 }
 
-enum TypeExpanse{
-  fixed     #постоянные
+enum TypeExpanse {
+  fixed #постоянные
   variables #переменные
 }
 
-type Source{
+type Source {
   medium: String #ID   #chanel
   source: String #ID
   campaign: String #ID
@@ -314,13 +319,17 @@ type Source{
   content: String #ID
 }
 
-
-type StatusGroup @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type StatusGroup
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
   code: String!
@@ -330,17 +339,22 @@ type StatusGroup @model
   default: Boolean
   type: Type
 }
-enum Type{
+enum Type {
   default
   custom
 }
 
-type Status @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type Status
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
   code: String!
@@ -350,18 +364,23 @@ type Status @model
   groupInfo: StatusGroup @hasOne(fields: ["group"])
 }
 
-type GeneralSettings @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type GeneralSettings
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   company: String!
   systemLanguage: SystemLanguage!
-  listAvailableCountries: [String]  
+  listAvailableCountries: [String]
   defaultCurrency: String!
-  timeZone: String! 
+  timeZone: String!
   statusMatrix: StatusMatrix!
   workingTime: [WorkTime]
   noWorkingDates: [String]
@@ -372,74 +391,80 @@ type GeneralSettings @model
   printingForms: PrintingForms!
 }
 
-
-enum SystemLanguage{
-  R     # русский
-  E     # английский
-  S     # испанский
+enum SystemLanguage {
+  R # русский
+  E # английский
+  S # испанский
 }
 
-enum StatusMatrix{
-  none                                             # Не использовать
-  order_types_only                       # Для типов заказов
-  order_types_user_groups        # Для типов заказов и групп пользователей
+enum StatusMatrix {
+  none # Не использовать
+  order_types_only # Для типов заказов
+  order_types_user_groups # Для типов заказов и групп пользователей
 }
 
-type WorkTime{
+type WorkTime {
   daysOfWeek: [Days]
   startTime: String
   endTime: String
   lunchStartTime: String
   lunchEndTime: String
-
 }
 
 # enum TwoFactorAuth{
 #   N  # не использовать
 # }
 
-enum ProductsQuantity{
-  W  # Целое
-  F   # Дробное
+enum ProductsQuantity {
+  W # Целое
+  F # Дробное
 }
-enum WeightAccuracy{
+enum WeightAccuracy {
   G # Граммы
   M # Миллиграммы
 }
 
-enum PrintingForms{
-  D  # Скачивать
-  O  # Открывать
+enum PrintingForms {
+  D # Скачивать
+  O # Открывать
 }
 
-
-type TransitionStatuses @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type TransitionStatuses
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   orderTypeId: ID
-  orderType: OrderType @hasOne(fields:["orderTypeId"])
+  orderType: OrderType @hasOne(fields: ["orderTypeId"])
   userGroupId: ID
-  userGroup: UserGroup @hasOne(fields:["userGroupId"])
-  matrix: String 
+  userGroup: UserGroup @hasOne(fields: ["userGroupId"])
+  matrix: String
 }
 
-
-type Filter @model
-@auth (
-  rules: [
-    { allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-){
+type Filter
+  @model
+  @auth(
+    rules: [
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
   filter: FilterItems!
 }
 
-type FilterItems{
+type FilterItems {
   manager: String
   country: String
   email: String
@@ -448,22 +473,24 @@ type FilterItems{
   statuses: [String]
 }
 
-
-
-type platformSettings @model
-@auth (
-  rules: [
-    { allow: public, provider: apiKey, operations: [read] }
-    {allow: private, provider: userPools, operations: [read, update, delete, create] }
-  ]
-)
-{
+type platformSettings
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: apiKey, operations: [read] }
+      {
+        allow: private
+        provider: userPools
+        operations: [read, update, delete, create]
+      }
+    ]
+  ) {
   id: ID!
   distribution: Distribution
   emailNotification: Boolean
 }
 
-enum Distribution{
-  do_not_assign  # не назначать
-  assign_evenly  # назначить равномерно
+enum Distribution {
+  do_not_assign # не назначать
+  assign_evenly # назначить равномерно
 }

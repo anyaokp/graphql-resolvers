@@ -140,6 +140,48 @@ app.use(
           console.log(err)
         }
       },
+      createPriceType: async (args) => {
+        try {
+          let result = await api.createPriceType(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listPriceTypes: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listPriceTypes(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getPriceType: async (args) => {
+        try {
+          let result = await api.getPriceType(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updatePriceType: async (args) => {
+        try {
+          let result = await api.updatePriceType(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deletePriceType: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deletePriceType(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })

@@ -1302,6 +1302,82 @@ type ModelFavoritesConnection {
 	pagination: Pagination!
 }
 
+type PriceType {
+	id: ID!
+	name: String!
+	code: String!
+	active: Boolean
+	isPromotionalPrice: Boolean
+	basePrice: BasePrice
+	ordering: Int
+	description: String
+	groups: [String]     
+	filterExpression: String
+	geo: RegionalRestrictions
+  }
+  
+  type RegionalRestrictions {
+	  location: [LocationItem]
+	}
+  
+  enum BasePrice {
+	  N 
+	  Y 
+	}
+  
+input CreatePriceTypeInput {
+	  id: ID
+	  name: String!
+	  code: String!
+	  active: Boolean
+	  isPromotionalPrice: Boolean
+	  basePrice: BasePrice
+	  ordering: Int
+	  description: String
+	  groups: [String]
+	  filterExpression: String
+	  geo: RegionalRestrictionsInput
+	}
+
+input RegionalRestrictionsInput {
+		location: [LocationItemInput]
+	  }
+
+input UpdatePriceTypeInput {
+		id: ID!
+		name: String
+		code: String
+		active: Boolean
+		isPromotionalPrice: Boolean
+		basePrice: BasePrice
+		ordering: Int
+		description: String
+		groups: [String]
+		filterExpression: String
+		geo: RegionalRestrictionsInput
+	  }
+
+input ModelPriceTypeFilterInput {
+	id: String
+	name: String
+	code: String
+	active: Boolean
+	isPromotionalPrice: Boolean
+	basePrice: BasePrice
+	ordering: Int
+	description: String
+	groups: [String]
+	filterExpression: String
+	geo: RegionalRestrictionsInput
+	page: Int
+	limit: Int
+}
+
+type ModelPriceTypeConnection {
+		items: [PriceType]!
+		pagination: Pagination!
+	}
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1349,6 +1425,9 @@ type RootMutation {
 	createFavorites(input: CreateFavoritesInput!): Favorites
 	updateFavorites(input: UpdateFavoritesInput!): Favorites
 	deleteFavorites(id: ID!): Favorites
+	createPriceType(input: CreatePriceTypeInput!): PriceType
+	updatePriceType(input: UpdatePriceTypeInput!): PriceType
+	deletePriceType(id: ID!): PriceType
 }
 
 type RootQuery {
@@ -1384,6 +1463,8 @@ type RootQuery {
 	getBucket(id: ID!): Bucket
 	listFavorites(filter: ModelFavoritesFilterInput): ModelFavoritesConnection
 	getFavorites(id: ID!): Favorites
+	listPriceTypes(filter: ModelPriceTypeFilterInput): ModelPriceTypeConnection
+	getPriceType(id: ID!): PriceType
 }
 
 schema {
