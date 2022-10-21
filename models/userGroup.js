@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { Rights, OrderAccess } = require('../constants/index')
+const { RIGHTS, ORDERACCESS } = require('../constants/index')
 
 const UserGroup = new Schema(
   {
@@ -9,7 +9,7 @@ const UserGroup = new Schema(
     rights: [
       {
         type: String,
-        enum: Rights,
+        enum: RIGHTS,
       },
     ],
     isManager: { type: Boolean },
@@ -23,7 +23,7 @@ const UserGroup = new Schema(
     orderAccess: {
       type: String,
       required: true,
-      enum: OrderAccess,
+      enum: ORDERACCESS,
     },
   },
   { timestamps: true, versionKey: false }

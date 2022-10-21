@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose')
 
-const { VatRate, ContragentType } = require('../constants/index')
+const { VATRATE, CONTRAGENTTYPE } = require('../constants/index')
 
 const Contragent = new Schema(
   {
     code: { type: String, required: true },
     countryId: { type: Schema.Types.ObjectId, required: true },
-    vatRate: { type: String, enum: VatRate },
-    contragentType: { type: String, required: true, enum: ContragentType },
+    vatRate: { type: String, enum: VATRATE },
+    contragentType: { type: String, required: true, enum: CONTRAGENTTYPE },
     INN: { type: String },
     legalName: { type: String },
     OKPO: { type: String },

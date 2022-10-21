@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { UserStatus } = require('../constants/index')
+const { USERSTATUS } = require('../constants/index')
 
 const Schema = mongoose.Schema
 
@@ -62,7 +62,7 @@ const UserSchema = new Schema(
     },
     status: {
       type: String,
-      enum: UserStatus,
+      enum: USERSTATUS,
       require: true,
     },
     averagCheck: {

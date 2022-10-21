@@ -1,15 +1,15 @@
 const { Schema, model } = require('mongoose')
 
-const { TypeWarehouse, ResidueType, Days } = require('../constants/index')
+const { TYPEWAREHOUSE, RESIDUETYPE, DAYS } = require('../constants/index')
 
 const WareHouse = new Schema(
   {
     name: { type: String, required: true },
-    typeWarehouse: { type: String, enum: TypeWarehouse },
+    typeWarehouse: { type: String, enum: TYPEWAREHOUSE },
     characterCode: { type: String },
     activity: { type: Boolean },
     description: { type: String },
-    residueType: { type: String, enum: ResidueType },
+    residueType: { type: String, enum: RESIDUETYPE },
     ordering: { type: Number },
     country: { type: Schema.Types.ObjectId },
     regionId: { type: Schema.Types.ObjectId },
@@ -26,7 +26,7 @@ const WareHouse = new Schema(
     underground: { type: String },
     coordinates: { type: String },
     weekOpeningHours: {
-      days: [{ type: String, enum: Days }],
+      days: [{ type: String, enum: DAYS }],
       timeStart: { type: String },
       timeEnd: { type: String },
       value: { type: String },

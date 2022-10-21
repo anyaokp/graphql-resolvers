@@ -1,26 +1,26 @@
 const { Schema, model } = require('mongoose')
 
 const {
-  IntegrationCode,
-  CountryCode,
-  VatRate,
-  NetValueType,
-  Days,
-  CalculationType,
+  INTEGRATIONCODE,
+  COUNTRYCODE,
+  VATRATE,
+  NETVALUETYPE,
+  DAYS,
+  CALCULATIONTYPE,
 } = require('../constants/index')
 
 const DeliveryType = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    integrationCode: { type: String, enum: IntegrationCode },
+    integrationCode: { type: String, enum: INTEGRATIONCODE },
     active: { type: Boolean },
     defaultForCrm: { type: Boolean },
     description: { type: String },
     availableCountries: [
       {
         type: String,
-        enum: CountryCode,
+        enum: COUNTRYCODE,
       },
     ],
     services: [
@@ -30,10 +30,10 @@ const DeliveryType = new Schema(
         activity: { type: Boolean },
       },
     ],
-    vatRate: { type: String, enum: VatRate },
+    vatRate: { type: String, enum: VATRATE },
     defaultCost: { type: String, required: true },
     defaultNetCost: { type: String, required: true },
-    calculationType: { type: String, required: true, enum: CalculationType },
+    calculationType: { type: String, required: true, enum: CALCULATIONTYPE },
     costDependsOnRegionWeight: { type: Boolean },
     costDependsOnDateTime: { type: Boolean },
     codMarkup: { type: String },
@@ -61,14 +61,14 @@ const DeliveryType = new Schema(
         weightTo: { type: String },
         orderPriceFrom: { type: String },
         orderPriceTo: { type: String },
-        netValueType: { type: String, enum: NetValueType },
+        netValueType: { type: String, enum: NETVALUETYPE },
         netValue: { type: String },
         value: { type: String },
       },
     ],
     dateTimeCostConditions: [
       {
-        days: [{ type: String, enum: Days }],
+        days: [{ type: String, enum: DAYS }],
         timeStart: { type: String },
         timeEnd: { type: String },
         value: { type: String },

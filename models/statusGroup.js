@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { Type } = require('../constants')
+const { TYPE } = require('../constants')
 
 const StatusGroup = new Schema(
   {
@@ -10,7 +10,7 @@ const StatusGroup = new Schema(
     ordering: { type: Number, required: true },
     color: { type: String },
     default: { type: Boolean },
-    type: { type: String, enum: Type },
+    type: { type: String, enum: TYPE },
   },
   { timestamps: true, versionKey: false }
 )

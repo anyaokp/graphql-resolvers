@@ -1,28 +1,28 @@
 const { Schema, model } = require('mongoose')
 
 const {
-  SystemLanguage,
-  StatusMatrix,
-  Days,
-  ProductsQuantity,
-  WeightAccuracy,
-  PrintingForms,
+  SYSTEMLANGUAGE,
+  STATUSMATRIX,
+  DAYS,
+  PRODUCTSQUANTITY,
+  WEIGHTACCURACY,
+  PRINTINGFORMS,
 } = require('../constants')
 
 const GeneralSettings = new Schema(
   {
     company: { type: String, required: true },
-    systemLanguage: { type: String, required: true, enum: SystemLanguage },
+    systemLanguage: { type: String, required: true, enum: SYSTEMLANGUAGE },
     listAvailableCountries: [{ type: String }],
     defaultCurrency: { type: String, required: true },
     timeZone: { type: String, required: true },
-    statusMatrix: { type: String, required: true, enum: StatusMatrix },
+    statusMatrix: { type: String, required: true, enum: STATUSMATRIX },
     workingTime: [
       {
         daysOfWeek: [
           {
             type: String,
-            enum: Days,
+            enum: DAYS,
           },
         ],
         startTime: { type: String },
@@ -39,17 +39,17 @@ const GeneralSettings = new Schema(
     productsQuantity: {
       type: String,
       required: true,
-      enum: ProductsQuantity,
+      enum: PRODUCTSQUANTITY,
     },
     weightAccuracy: {
       type: String,
       required: true,
-      enum: WeightAccuracy,
+      enum: WEIGHTACCURACY,
     },
     printingForms: {
       type: String,
       required: true,
-      enum: PrintingForms,
+      enum: PRINTINGFORMS,
     },
   },
   { timestamps: true, versionKey: false }

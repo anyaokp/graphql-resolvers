@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { BasePrice } = require('../constants')
+const { BASEPRICE } = require('../constants')
 
 const PriceType = new Schema(
   {
@@ -10,7 +10,7 @@ const PriceType = new Schema(
     isPromotionalPrice: { type: Boolean },
     basePrice: {
       type: String,
-      enum: BasePrice,
+      enum: BASEPRICE,
     },
     ordering: { type: Number },
     description: { type: String },

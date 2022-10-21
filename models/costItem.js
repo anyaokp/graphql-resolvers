@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { TypeExpanse } = require('../constants')
+const { TYPEEXPANSE } = require('../constants')
 
 const CostItem = new Schema(
   {
@@ -9,7 +9,7 @@ const CostItem = new Schema(
     active: { type: Boolean },
     ordering: { type: Number },
     group: { type: Schema.Types.ObjectId },
-    type: { type: String, required: true, enum: TypeExpanse },
+    type: { type: String, required: true, enum: TYPEEXPANSE },
     appliesToOrders: { type: Boolean },
     appliesToUsers: { type: Boolean },
   },

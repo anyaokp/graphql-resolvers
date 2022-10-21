@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose')
 
-const { Distribution } = require('../constants')
+const { DISTRIBUTION } = require('../constants')
 
 const PlatformSettings = new Schema(
   {
-    distribution: { type: String, enum: Distribution },
+    distribution: { type: String, enum: DISTRIBUTION },
     emailNotification: { type: Boolean },
   },
   { timestamps: true, versionKey: false }
