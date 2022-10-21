@@ -1429,6 +1429,51 @@ type ModelCourierConnection {
 	pagination: Pagination!
 }
 
+
+type Unit
+{
+  id: ID!
+  name: String!
+  code: String!
+  sym: String!
+  active: Boolean
+  default: Boolean
+}
+
+input CreateUnitInput {
+	id: ID
+	name: String!
+	code: String!
+	sym: String!
+	active: Boolean
+	default: Boolean
+}
+
+input UpdateUnitInput {
+	id: ID!
+	name: String
+	code: String
+	sym: String
+	active: Boolean
+	default: Boolean
+}
+
+input ModelUnitFilterInput {
+	id: String
+	name: String
+	code: String
+	sym: String
+	active: Boolean
+	default: Boolean
+	page: Int
+	limit: Int
+}
+
+type ModelUnitConnection {
+	items: [Unit]!
+	pagination: Pagination!
+}
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1482,6 +1527,9 @@ type RootMutation {
 	createCourier(input: CreateCourierInput!): Courier
 	updateCourier(input: UpdateCourierInput!): Courier
 	deleteCourier(id: ID!): Courier
+	createUnit(input: CreateUnitInput!): Unit
+	updateUnit(input: UpdateUnitInput!): Unit
+	deleteUnit(id: ID!): Unit
 }
 
 type RootQuery {
@@ -1521,6 +1569,8 @@ type RootQuery {
 	getPriceType(id: ID!): PriceType
 	listCouriers(filter: ModelCourierFilterInput): ModelCourierConnection
 	getCourier(id: ID!): Courier
+	listUnits(filter: ModelUnitFilterInput): ModelUnitConnection
+	getUnit(id: ID!): Unit
 }
 
 schema {

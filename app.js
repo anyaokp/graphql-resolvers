@@ -224,6 +224,49 @@ app.use(
           console.log(err)
         }
       },
+
+      createUnit: async (args) => {
+        try {
+          let result = await api.createUnit(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listUnits: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listUnits(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getUnit: async (args) => {
+        try {
+          let result = await api.getUnit(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateUnit: async (args) => {
+        try {
+          let result = await api.updateUnit(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteUnit: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteUnit(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })
