@@ -17,6 +17,7 @@ const PriceType = require('./priceType')
 const Courier = require('./courier')
 const Unit = require('./unit')
 const CostGroup = require('./costGroup')
+const CostItem = require('./costItem')
 
 module.exports = {
   ...User,
@@ -38,4 +39,5 @@ module.exports = {
   ...Courier,
   ...Unit,
   ...CostGroup,
+  ...CostItem,
 }

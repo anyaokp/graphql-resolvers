@@ -1518,6 +1518,67 @@ type ModelCostGroupConnection {
 	pagination: Pagination!
  }
 
+ type CostItem
+ {
+  id: ID!
+  name: String!
+  code: String!
+  active: Boolean
+  ordering: Int
+  group: ID!
+  type: TypeExpanse!
+  appliesToOrders: Boolean
+  appliesToUsers: Boolean
+}
+
+enum TypeExpanse {
+	fixed #постоянные
+	variables #переменные
+  }
+
+input CreateCostItemInput {
+	id: ID
+	name: String!
+	code: String!
+	active: Boolean
+	ordering: Int
+	group: ID!
+	type: TypeExpanse!
+	appliesToOrders: Boolean
+	appliesToUsers: Boolean
+  }
+
+input UpdateCostItemInput {
+	id: ID!
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	group: ID
+	type: TypeExpanse
+	appliesToOrders: Boolean
+	appliesToUsers: Boolean
+  }
+
+input ModelCostItemFilterInput {
+	id: ID
+	name: String
+	code: String
+	active: Boolean
+	ordering: Int
+	group: ID
+	type: TypeExpanse
+	appliesToOrders: Boolean
+	appliesToUsers: Boolean
+	page: Int
+	limit: Int
+}
+
+type ModelCostItemConnection {
+	items: [CostItem]!
+	pagination: Pagination!
+ }
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1577,6 +1638,9 @@ type RootMutation {
 	createCostGroup(input: CreateCostGroupInput!): CostGroup
 	updateCostGroup(input: UpdateCostGroupInput!): CostGroup
 	deleteCostGroup(id: ID!): CostGroup
+	createCostItem(input: CreateCostItemInput!): CostItem
+	updateCostItem(input: UpdateCostItemInput!): CostItem
+	deleteCostItem(id: ID!): CostItem
 }
 
 type RootQuery {
@@ -1620,6 +1684,8 @@ type RootQuery {
 	getUnit(id: ID!): Unit
 	listCostGroups(filter: ModelCostGroupFilterInput): ModelCostGroupConnection
 	getCostGroup(id: ID!): CostGroup
+	listCostItems(filter: ModelCostItemFilterInput): ModelCostItemConnection
+	getCostItem(id: ID!): CostItem
 }
 
 schema {

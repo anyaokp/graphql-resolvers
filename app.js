@@ -308,6 +308,48 @@ app.use(
           console.log(err)
         }
       },
+      createCostItem: async (args) => {
+        try {
+          let result = await api.createCostItem(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listCostItems: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listCostItems(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getCostItem: async (args) => {
+        try {
+          let result = await api.getCostItem(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateCostItem: async (args) => {
+        try {
+          let result = await api.updateCostItem(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteCostItem: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteCostItem(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })
