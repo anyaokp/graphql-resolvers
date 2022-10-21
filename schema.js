@@ -1838,6 +1838,55 @@ type ModelTransitionStatusesConnection {
 	pagination: Pagination!
  }
 
+type Filter
+{
+ id: ID!
+ name: String!
+ filter: FilterItems!
+}
+
+type FilterItems {
+	manager: String
+	country: String
+	email: String
+	number: String
+	fio: String
+	statuses: [String]
+  }
+
+input FilterItemsInput {
+	manager: String
+	country: String
+	email: String
+	number: String
+	fio: String
+	statuses: [String]
+  }
+
+input CreateFilterInput {
+	id: ID
+	name: String!
+	filter: FilterItemsInput!
+  }
+
+input UpdateFilterInput {
+	id: ID!
+	name: String
+	filter: FilterItemsInput
+  }
+
+input ModelFilterFilterInput {
+	id: String
+	name: String
+	page: Int
+	limit: Int
+  }
+
+type ModelFilterConnection {
+	items: [Filter]!
+	pagination: Pagination!
+ }
+
 type RootMutation {
 	putCustomer(id: ID!, title: String!): Customer
     createUser(input: CreateUserInput!): User
@@ -1912,6 +1961,9 @@ type RootMutation {
 	createTransitionStatuses(input: CreateTransitionStatusesInput!): TransitionStatuses
 	updateTransitionStatuses(input: UpdateTransitionStatusesInput!): TransitionStatuses
 	deleteTransitionStatuses(id: ID!): TransitionStatuses
+	createFilter(input: CreateFilterInput!): Filter
+	updateFilter(input: UpdateFilterInput!): Filter
+	deleteFilter(id: ID!): Filter
 }
 
 type RootQuery {
@@ -1965,6 +2017,8 @@ type RootQuery {
 	getGeneralSettings(id: ID!): GeneralSettings
 	listTransitionStatuses(filter: ModelTransitionStatusesFilterInput): ModelTransitionStatusesConnection
 	getTransitionStatuses(id: ID!): TransitionStatuses
+	listFilters(filter: ModelFilterFilterInput): ModelFilterConnection
+	getFilter(id: ID!): Filter
 }
 
 schema {

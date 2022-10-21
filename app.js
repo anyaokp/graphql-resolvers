@@ -518,6 +518,48 @@ app.use(
           console.log(err)
         }
       },
+      createFilter: async (args) => {
+        try {
+          let result = await api.createFilter(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listFilters: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listFilters(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      getFilter: async (args) => {
+        try {
+          let result = await api.getFilter(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateFilter: async (args) => {
+        try {
+          let result = await api.updateFilter(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      deleteFilter: async (args) => {
+        try {
+          const { id } = args
+          let result = await api.deleteFilter(id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
     },
     graphiql: true,
   })
