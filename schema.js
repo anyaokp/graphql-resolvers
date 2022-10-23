@@ -49,6 +49,11 @@ enum CustomerStatus {
 	bad
 }
 
+type Tags {
+	name: String
+	color: String
+}
+
 type EntityInfo
  {
 	legalName: String
@@ -175,7 +180,7 @@ enum Sex {
 	W
 }
 
-type Tags {
+input TagsInput {
 	name: String
 	color: String
 }
@@ -1645,6 +1650,7 @@ type Status
  ordering: Int!
  group: ID!
  groupInfo: StatusGroup
+ color: String!
 }
 
 input CreateStatusInput {
@@ -1654,6 +1660,7 @@ input CreateStatusInput {
 	active: Boolean
 	ordering: Int!
 	group: ID!
+	color: String!
   }
 
 input UpdateStatusInput {
@@ -1663,6 +1670,7 @@ input UpdateStatusInput {
 	active: Boolean
 	ordering: Int
 	group: ID
+	color: String
   }
 
 input ModelStatusFilterInput {
@@ -1923,8 +1931,436 @@ type ModelPlatformSettingsConnection {
 	pagination: Pagination!
  }
 
+ input CreateCustomerInput {
+	id: ID
+	userStatus: [CustomerStatus]
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	birthday: String
+	tags: [TagsInput]
+	managerId: ID
+	sex: Sex
+	address: AddressInput
+	phone: String
+	totalSumm: String
+	averageSumm: String
+	totalAmountOfOrders: String
+	createdAt: String
+	isEntity: Boolean
+	entityInfo: EntityInfoInput
+	ltv: String
+	customerBucketId: ID
+}
+
+input UpdateCustomerInput {
+	id: ID!
+	userStatus: [CustomerStatus]
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	birthday: String
+	tags: [TagsInput]
+	managerId: ID
+	sex: Sex
+	address: AddressInput
+	phone: String
+	totalSumm: String
+	averageSumm: String
+	totalAmountOfOrders: String
+	createdAt: String
+	isEntity: Boolean
+	entityInfo: EntityInfoInput
+	ltv: String
+	customerBucketId: ID
+}
+
+input EntityInfoInput {
+	legalName: String
+	fax: String
+	INN: String
+	KPP: String
+	legalAddress: String
+	OKPO: String
+	OKONH: String
+	checkingAccount: String
+	corrAccount: String
+	BIK: String
+}
+
+input AddressInput {
+	index: String
+	country: String
+	region: String
+	city: String
+	street: String
+	structure: String
+	entrance: String
+	flat: String
+	floor: Int
+	house: String
+	housing: String
+	metro: String
+	notes: String
+	text: String
+	intercomCode: String
+	isFlat: Boolean
+	isOffice: Boolean
+}
+
+
+input statusBlockInput {
+	orderState: OrderState
+	statusUpdatedAt: String
+	statusId: ID
+}
+
+type statusBlock {
+	orderState: OrderState
+	statusUpdatedAt: String
+	statusId: ID
+	status: Status
+}
+
+enum OrderState {
+	expired
+	call
+}
+
+input CustomerInfoInput {
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	phone: String
+	additionalPhone: String
+}
+
+type CustomerInfo {
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	phone: String
+	additionalPhone: String
+}
+
+input AddressOrderInput {
+	country: String
+	region: String
+	city: String
+	postCode: String
+	street: String
+	metro: String
+	house: String      # дом 
+	apartment: String  # Квартира
+	structure: String  # Строение
+	block: String
+	housing: String    # корпус
+	entrance: String   # Подъезд
+	floor: String      # этаж
+}
+
+type AddressOrder {
+	country: String
+	region: String
+	city: String
+	postCode: String
+	street: String
+	metro: String
+	house: String      # дом 
+	apartment: String  # Квартира
+	structure: String  # Строение
+	block: String
+	housing: String    # корпус
+	entrance: String   # Подъезд
+	floor: String      # этаж
+}
+
+input PriceOrderInput {
+	discountManualAmount: String
+	discountManualPercent: String
+	totalCost: String!
+	discountAmount: String
+	outcome: String!
+}
+
+
+type PriceOrder {
+	discountManualAmount: String!
+	discountManualPercent: String!
+	totalCost: String!
+	discountAmount: String!
+	outcome: String!
+}
+
+input DeliveryInput {
+	methodOfObtaining: MethodOfObtaining!
+	deliveryTypeId: ID
+	deliveryCost: String
+	deliveryNetCost: String
+}
+
+type Delivery {
+	methodOfObtaining: MethodOfObtaining!
+	deliveryTypeId: ID
+	deliveryCost: String
+	deliveryNetCost: String
+	delevetyType: DeliveryType
+}
+
+enum MethodOfObtaining {
+	pick_up_point
+	courier
+}
+
+enum PaymentStatusOrder {
+	wait
+	partial
+	payed
+}
+input PaymentOrderInput {
+	paymentSum: String!
+	paymentStatus: PaymentStatusOrder!
+	paymentTypeId: ID
+	paidAt: String
+	paymentAmount: String
+    comment: String
+}
+
+type PaymentOrder {
+	paymentSum: String!
+	paymentStatus: PaymentStatusOrder!
+	paymentTypeId: ID
+	paymentType: PaymentType
+	paidAt: String
+	paymentAmount: String
+    comment: String
+}
+
+input ShippmentOrderInput {
+	shipmentStore: String,
+	shipmentDate: String,
+	shipped: Boolean
+}
+
+type ShippmentOrder {
+	shipmentStore: String,
+	shipmentDate: String,
+	shipped: Boolean
+}
+
+
+input ExpensesInput {
+	period: String
+	sum: String
+	articleCosts: String
+	comment: String
+}
+
+type Expenses {
+	period: String
+	sum: String
+	articleCosts: String
+	comment: String
+} 
+
+input PropertyInput {
+	key: String
+	value: String
+}
+
+type Property{
+	key: String
+	value: String
+}
+
+input OrderItemInput {
+	productId:  String!
+    configurationId:  String
+	weight:  String
+    comment:  String
+	promotionId:  String
+	productName:  String!
+	quantity:  String 
+	properties: [ PropertyInput ]
+	vendorCode:  String 
+	status:  String 
+	initialPrice: String!
+	priceTypeId: ID
+	discountTotal: String  
+	discountManualAmount: String 
+	discountManualPercent: String 
+    vatRate: VatRate
+	purchasePrice: String!
+	image: String 
+	url: String
+}
+
+type OrderItem {
+	productId:  String!
+    configurationId:  String
+	weight:  String
+    comment:  String
+	promotionId:  String
+	productName:  String!
+	quantity:  String 
+	properties: [ Property ]
+	vendorCode:  String 
+	status:  String 
+	initialPrice: String 
+	priceTypeId: ID
+	discountTotal: String  
+	discountManualAmount: String 
+	discountManualPercent: String 
+    vatRate: VatRate
+	purchasePrice: String 
+	image: String 
+	url: String
+}
+
+input UpdateOrderInput {
+	statusBlock: statusBlockInput
+	number: String
+	ordering: Int
+	managerId: ID
+	orderTypeId: ID!
+	customerId: ID!
+	customerInfo: CustomerInfoInput
+	address: AddressOrderInput
+	price: PriceOrderInput!,
+	delivery: DeliveryInput
+	payment: PaymentOrderInput,
+	shippment: ShippmentOrderInput,
+	intercomCode: String
+	promocode: String
+	additionalInfo: String
+	customerComment: String
+	managerComment: String
+	comment: String
+	expenses: [ExpensesInput],
+	expensesResult: String
+	orderItems: [OrderItemInput]
+}
+
+input CreateOrderInput {
+	statusBlock: statusBlockInput
+	number: String
+	ordering: Int
+	managerId: ID
+	orderTypeId: ID!
+	customerId: ID!
+	customerInfo: CustomerInfoInput
+	address: AddressOrderInput
+	price: PriceOrderInput!,
+	delivery: DeliveryInput
+	payment: PaymentOrderInput,
+	shippment: ShippmentOrderInput,
+	intercomCode: String
+	promocode: String
+	additionalInfo: String
+	customerComment: String
+	managerComment: String
+	comment: String
+	expenses: [ExpensesInput],
+	expensesResult: String
+	orderItems: [OrderItemInput]
+}
+
+type Order {
+	id: ID!
+	statusBlock: statusBlock
+	number: String
+	ordering: Int
+	managerId: ID
+	manager: User
+	orderTypeId: ID!
+	orderType: OrderType
+	customerId: ID!
+	customer: Customer
+	customerInfo: CustomerInfo
+	address: AddressOrder
+	price: PriceOrder!
+	delivery: Delivery
+	payment: PaymentOrder
+	shippment: ShippmentOrder
+	intercomCode: String
+	promocode: String
+	additionalInfo: String
+	customerComment: String
+	managerComment: String
+	comment: String
+	expenses: [Expenses],
+	expensesResult: String
+	orderItems: [OrderItem]
+}
+
+input ModelOrderFilterInput {
+	createdAt: String
+	orderStatus: String
+	userStatus: String
+	paymentStatus: String
+	number: String
+	ordering: Int
+	country: String
+	managerId: String
+	orderTypeId: String
+	wrapperId: String
+	customerId: String
+	lastName: String
+	firstName: String
+	patronymic: String
+	email: String
+	phone: String
+	statusUpdatedAt: String
+	additionalPhone: String
+	discountManualAmount: String
+	discountManualPercent: String
+	totalCost: String
+	discountAmount: String
+	outcome: String
+	shipmentStore: String
+	shipmentDate: String
+	shipped: Boolean
+	deliveryTypeId: String
+	postCode: String
+	region: String
+	city: String
+	underground: String
+	street: String
+	metro: String
+	house: String
+	apartment: String
+	structure: String
+	block: String
+	housing: String
+	entrance: String
+	floor: String
+	intercomCode: String
+	promocode: String
+	additionalInfo: String
+	deliveryCost: String
+	deliveryNetCost: String
+	paymentSum: String
+	customerComment: String
+	managerComment: String
+	expensesResult: String
+	methodOfObtaining: String
+	comment: String
+	page: Int
+	limit: Int
+}
+
+type ModelOrderConnection {
+	items: [Order]
+	pagination: Pagination!
+}
 type RootMutation {
-	putCustomer(id: ID!, title: String!): Customer
+	createCustomer(input: CreateCustomerInput!): Customer
+	updateCustomer(input: UpdateCustomerInput!): Customer
+	deleteCustomer(id: ID!): Customer
     createUser(input: CreateUserInput!): User
     updateUser(input: UpdateUserInput!): User
     deleteUser(id: ID!): User
@@ -2003,6 +2439,9 @@ type RootMutation {
 	createPlatformSettings(input: CreatePlatformSettingsInput!): PlatformSettings
 	updatePlatformSettings(input: CreatePlatformSettingsInput!): PlatformSettings
 	deletePlatformSettings(id: ID!): PlatformSettings
+	createOrder(input: CreateOrderInput!): Order
+	updateOrder(input: UpdateOrderInput!): Order
+	deleteOrder(id: ID!): Order
 }
 
 type RootQuery {
@@ -2060,6 +2499,8 @@ type RootQuery {
 	getFilter(id: ID!): Filter
 	listPlatformSettings(filter: ModelPlatformSettingsFilterInput): ModelPlatformSettingsConnection
 	getPlatformSettings(id: ID!): PlatformSettings
+	listOrders(filter: ModelOrderFilterInput): ModelOrderConnection
+	getOrder(id: ID!): Order
 }
 
 schema {

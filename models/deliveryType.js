@@ -91,4 +91,4 @@ DeliveryType.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('DeliveryType', DeliveryType)
+module.exports = model('Delivery-type', DeliveryType)

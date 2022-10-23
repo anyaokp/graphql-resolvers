@@ -8,6 +8,7 @@ const Status = new Schema(
     ordering: { type: Number, required: true },
     group: { type: Schema.Types.ObjectId, required: true },
     groupInfo: { type: Schema.Types.ObjectId, ref: 'StatusGroup' },
+    color: { type: String, required: true }
   },
   { timestamps: true, versionKey: false }
 )

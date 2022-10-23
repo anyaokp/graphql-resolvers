@@ -14,6 +14,80 @@ app.use(
   graphqlHttp({
     schema: buildSchema(schema),
     rootValue: {
+      createOrder: async (args) => {
+        try {
+          let result = await api.createOrder(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listOrders: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listOrders(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createCustomer: async (args) => {
+        try {
+          let result = await api.createCustomer(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createPaymentType: async (args) => {
+        try {
+          let result = await api.createPaymentType(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createDeliveryType: async (args) => {
+        try {
+          let result = await api.createDeliveryType(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createOrderType: async (args) => {
+        try {
+          let result = await api.createOrderType(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      listUsers: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listUsers(filter)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createUser: async (args) => {
+        try {
+          let result = await api.createUser(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      createUserGroup: async (args) => {
+        try {
+          let result = await api.createUserGroup(args.input)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
       createOrderMethod: async (args) => {
         try {
           let result = await api.createOrderMethod(args.input)

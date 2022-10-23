@@ -1,3 +1,9 @@
+const USER_STATUSES = [ 'free', 'busy', 'dinner', 'break']
+const CUSTOMER_STATUS = [  'vip', 'bad' ]
+const SEX = [ 'M', 'W']
+const ORDER_STATE = [ 'expired', 'call' ]
+const PAYMENT_STATUS_ORDER = ['wait', 'partial', 'payed']
+const METHOD_OF_OBTAINING = [ 'pick_up_point', 'courier' ]
 const RIGHTS = [
   'ROLE_ORDER_VIEW',
   'ROLE_ORDER_CREATE',
@@ -187,4 +193,10 @@ module.exports = {
   WEIGHTACCURACY,
   PRINTINGFORMS,
   DISTRIBUTION,
+  CUSTOMER_STATUS,
+  USER_STATUSES,
+  SEX,
+  ORDER_STATE,
+  PAYMENT_STATUS_ORDER,
+  METHOD_OF_OBTAINING
 }

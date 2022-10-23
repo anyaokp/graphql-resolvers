@@ -1,99 +1,97 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { USER_STATUSES } = require('../..');
 
-const { USERSTATUS } = require('../constants/index')
-
-const Schema = mongoose.Schema
-
+const Schema = mongoose.Schema;
+	
 const UserSchema = new Schema(
   {
     lastOrderDate: {
-      type: String,
+      type: String
     },
     lastName: {
       type: String,
-      required: true,
+      required: true
     },
     firstName: {
       type: String,
-      required: true,
+      required: true
     },
     patronymic: {
       type: String,
     },
     email: {
       type: String,
-      required: true,
+      required: true
     },
-    position: {
+    position:  {
       type: String,
-      required: true,
+      required: true
     },
     phone: {
       type: String,
-      required: true,
+      required: true
     },
-    active: {
+    active:  {
       type: Boolean,
       default: false,
-      required: true,
+      required: true
     },
-    isAdmin: {
+    isAdmin:  {
       type: Boolean,
       default: false,
-      required: true,
+      required: true
     },
-    groups: {
-      type: [{ type: String }],
-    },
-    emailAlert: {
+    groups: [
+      { type: String}
+    ],
+    emailAlert:  {
       type: Boolean,
       default: false,
-      required: true,
+      required: true
     },
-    alertsWithSound: {
+    alertsWithSound:  {
       type: Boolean,
       default: false,
-      required: true,
+      required: true
     },
-    online: {
+    online:  {
       type: Boolean,
       default: false,
-      required: true,
+      required: true
     },
     status: {
       type: String,
-      enum: USERSTATUS,
-      require: true,
+      enum: USER_STATUSES,
+      require: true
     },
-    averagCheck: {
+    averagCheck:  {
       type: Number,
       default: 0,
-      required: true,
+      required: true
     },
     salesAmount: {
       type: Number,
       default: 0,
-      required: true,
+      required: true
     },
     totalAmountOfOrders: {
       type: Number,
       default: 0,
-      required: true,
+      required: true
     },
-    orderNumbers: [
-      {
-        type: String,
-      },
-    ],
-    // createdAt.virtual
-    // createdAt: String!
-    // updatedAt: String!
-  },
-  { timestamps: true, versionKey: false }
-)
+  }, {
+    versionKey: false,
+    timestamps: true,
+  }
+);
 
-UserSchema.virtual('id').get(function () {
+
+UserSchema.set('toObject', { virtuals: true })
+UserSchema.set('toJSON', { virtuals: true })
+
+UserSchema.virtual('id').get(function(){
   return this._id
-})
+});
 
-module.exports = mongoose.model('User', UserSchema)
+
+module.exports = mongoose.model('User', UserSchema);

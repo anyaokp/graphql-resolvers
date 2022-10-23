@@ -44,4 +44,4 @@ PriceType.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('PriceType', PriceType)
+module.exports = model('Price-type', PriceType)
