@@ -19,4 +19,4 @@ StatusGroup.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('StatusGroup', StatusGroup)
+module.exports = model('Status-Group', StatusGroup)

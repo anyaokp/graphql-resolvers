@@ -16,4 +16,4 @@ OrderType.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('OrderType', OrderType)
+module.exports = model('Order-Type', OrderType)

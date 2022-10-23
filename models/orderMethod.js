@@ -15,4 +15,4 @@ OrderMethod.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('OrderMethod', OrderMethod)
+module.exports = model('Order-Method', OrderMethod)

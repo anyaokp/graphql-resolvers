@@ -21,4 +21,4 @@ PaymentType.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('PaymentType', PaymentType)
+module.exports = model('Payment-Type', PaymentType)

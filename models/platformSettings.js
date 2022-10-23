@@ -14,4 +14,4 @@ PlatformSettings.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('PlatformSettings', PlatformSettings)
+module.exports = model('Platform-Settings', PlatformSettings)

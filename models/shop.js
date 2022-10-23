@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { WAREHOUSESAVAILABLE } = require('../constants/index')
+const { WAREHOUSES_AVAILABLE } = require('../constants/index')
 
 const Shop = new Schema(
   {
@@ -16,7 +16,7 @@ const Shop = new Schema(
     postCode: { type: String },
     warehousesAvailable: {
       type: String,
-      enum: WAREHOUSESAVAILABLE,
+      enum: WAREHOUSES_AVAILABLE,
     },
     excludedStores: [
       {
