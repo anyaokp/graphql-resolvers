@@ -6,8 +6,7 @@ const StatusSchema = new Schema(
     code: { type: String, required: true },
     active: { type: Boolean, default: true  },
     ordering: { type: Number, required: true },
-    group: { type: Schema.Types.ObjectId, required: true },
-    groupInfo: { type: Schema.Types.ObjectId, ref: 'StatusGroup' },
+    groupId: { type: String, required: true, ref: 'Status-group'},
     color: { type: String, required: true }
   },
   { timestamps: true, versionKey: false }

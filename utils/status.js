@@ -1,14 +1,7 @@
 const { Status, StatusGroup } = require('../models')
 
-const ObjectId = require('mongoose').Types.ObjectId
-
 async function createStatus(data) {
-  const { group } = data
-  const groupInfo = await StatusGroup.findById(group)
-  return await Status.create({
-    groupInfo: groupInfo._id ? groupInfo : null,
-    ...data,
-  })
+  return await Status.create(data)
 }
 
 async function getStatus(id) {
