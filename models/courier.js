@@ -7,7 +7,7 @@ const CourierSchema = new Schema(
     patronymic: { type: String },
     email: { type: String },
     phone: { type: String },
-    active: { type: Boolean, dafault: true  },
+    active: { type: Boolean, default: true  },
     description: { type: String },
   },
   { timestamps: true, versionKey: false }

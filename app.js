@@ -14,6 +14,16 @@ app.use(
   graphqlHttp({
     schema: buildSchema(schema),
     rootValue: {
+      listPaymentTypes: async (args) => {
+        try {
+          const filter = args?.filter || {}
+          let result = await api.listPaymentTypes(filter)
+          console.log(result)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
       createOrder: async (args) => {
         try {
           let result = await api.createOrder(args.input)

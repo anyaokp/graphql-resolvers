@@ -14,7 +14,7 @@ const DeliveryTypeSchema = new Schema(
     name: { type: String, required: true },
     code: { type: String, required: true },
     integrationCode: { type: String, enum: INTEGRATION_CODE },
-    active: { type: Boolean, dafault: true  },
+    active: { type: Boolean, default: true  },
     defaultForCrm: { type: Boolean },
     description: { type: String },
     availableCountries: [

@@ -9,7 +9,7 @@ const ShopSchema = new Schema(
     code: { type: String, required: true },
     country: { type: Schema.Types.ObjectId },
     description: { type: String },
-    active: { type: Boolean, dafault: true  },
+    active: { type: Boolean, default: true  },
     ordering: { type: Number },
     phone: { type: String },
     address: { type: String },

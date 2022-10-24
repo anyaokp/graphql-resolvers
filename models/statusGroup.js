@@ -6,7 +6,7 @@ const StatusGroupSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean, dafault: true  },
+    active: { type: Boolean, default: true  },
     ordering: { type: Number, required: true },
     color: { type: String },
     default: { type: Boolean },
