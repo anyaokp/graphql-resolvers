@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const Filter = new Schema(
+const FilterSchema = new Schema(
   {
     name: { type: String, required: true },
     filter: {
@@ -15,8 +15,8 @@ const Filter = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-Filter.virtual('id').get(function () {
+FilterSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Filter', Filter)
+module.exports = model('Filter', FilterSchema)

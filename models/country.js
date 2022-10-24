@@ -1,14 +1,14 @@
 const { Schema, model } = require('mongoose')
 
-const Country = new Schema(
+const CountrySchema = new Schema(
   {
     name: { type: String },
   },
   { timestamps: true, versionKey: false }
 )
 
-Country.virtual('id').get(function () {
+CountrySchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Country', Country)
+module.exports = model('Country', CountrySchema)

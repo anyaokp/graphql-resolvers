@@ -1,18 +1,18 @@
 const { Schema, model } = require('mongoose')
 
-const Unit = new Schema(
+const UnitSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
     sym: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     default: { type: Boolean },
   },
   { timestamps: true, versionKey: false }
 )
 
-Unit.virtual('id').get(function () {
+UnitSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Unit', Unit)
+module.exports = model('Unit', UnitSchema)

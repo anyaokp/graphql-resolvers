@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const Favorite = new Schema(
+const FavoriteSchema = new Schema(
   {
     customerId: { type: Schema.Types.ObjectId, required: true },
     products: [{ type: String }],
@@ -8,8 +8,8 @@ const Favorite = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-Favorite.virtual('id').get(function () {
+FavoriteSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Favorite', Favorite)
+module.exports = model('Favorite', FavoriteSchema)

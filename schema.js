@@ -69,7 +69,8 @@ type EntityInfo
 }
 
 type ModelCustomerConnection {
-	items: [Customer]!
+	tems: [Customer]!
+    pagination: Pagination!
 }
 
 input ModelCustomerFilterInput {
@@ -323,9 +324,9 @@ type UserGroup {
   breakdownSites: [String]   
   makeBreakdownByOrderMethods: Boolean
   breakdownOrderMethods: [String] 
-  isDeliveryMen: Boolean  # ответственный за доставку
+  isDeliveryMen: Boolean
   deliveryTypes: [String]
-  restrictByDeliveryTypes: Boolean # предоставлять доступ...
+  restrictByDeliveryTypes: Boolean
   orderAccess: OrderAccess!
 }
 
@@ -396,9 +397,9 @@ enum Rights {
   }
 
 enum OrderAccess {
-	full                        # ко всем заказам и клиентам
-	only_mine                   # только к своим заказам и клиентам
-	by_order_types_and_sites    # только к заказам и клиентам типов
+	full
+	only_mine
+	by_order_types_and_sites
 }
 
 input CreateUserGroupInput  {
@@ -580,8 +581,8 @@ type LocalityItem {
   }
 
 enum IntegrationCode {
-	W # без интеграции
-	D # доставка курьером
+	W
+	D
   }
 
 enum CountryCode {
@@ -605,19 +606,19 @@ type Services {
   }
 
 enum VatRate {
-	WITHOUT_NDS # Без НДС
-	TN # 20%
-	EI # 18%
-	TW # 12%
-	TE # 10%
-	SE # 7%
-	FI # 0.5%
-	NU # 0%
+	WITHOUT_NDS
+	TN
+	EI
+	TW
+	TE
+	SE
+	FI
+	NU
   }
   
 enum CalculationType {
-	S #  Static
-	D #  Dynamic
+	S
+	D
   }
 
 input RegionWeightCostConditionsInput  {
@@ -945,10 +946,10 @@ input WeekOpeningHoursInput {
   }
 
 enum TypeWarehouse {
-	store_type_retail # розничный магазин
-	store_type_online # интернет-магазин
-	store_type_warehouse # склад
-	store_type_supplier # склад поставщика
+	store_type_retail
+	store_type_online
+	store_type_warehouse
+	store_type_supplier
   }
   
 type WeekOpeningHours {
@@ -1015,8 +1016,8 @@ type Shop
 }
 
 enum WarehousesAvailable {
-	Y # да
-	N # нет
+	Y
+	N
   }
 
 type ExcludedStoresItem {
@@ -1537,8 +1538,8 @@ type ModelCostGroupConnection {
 }
 
 enum TypeExpanse {
-	fixed #постоянные
-	variables #переменные
+	fixed
+	variables
   }
 
 input CreateCostItemInput {
@@ -1709,15 +1710,15 @@ type GeneralSettings
 }
 
 enum SystemLanguage {
-	R # русский
-	E # английский
-	S # испанский
+	R
+	E
+	S
   }
   
 enum StatusMatrix {
-	none # Не использовать
-	order_types_only # Для типов заказов
-	order_types_user_groups # Для типов заказов и групп пользователей
+	none
+	order_types_only
+	order_types_user_groups
   }
   
 type WorkTime {
@@ -1729,18 +1730,18 @@ type WorkTime {
   }
 
 enum ProductsQuantity {
-	W # Целое
-	F # Дробное
+	W
+	F
   }
 
 enum WeightAccuracy {
-	G # Граммы
-	M # Миллиграммы
+	G
+	M
   }
   
 enum PrintingForms {
-	D # Скачивать
-	O # Открывать
+	D
+	O
   }
 
 input CreateGeneralSettingsInput {
@@ -2054,13 +2055,13 @@ input AddressOrderInput {
 	postCode: String
 	street: String
 	metro: String
-	house: String      # дом 
-	apartment: String  # Квартира
-	structure: String  # Строение
+	house: String
+	apartment: String
+	structure: String
 	block: String
-	housing: String    # корпус
-	entrance: String   # Подъезд
-	floor: String      # этаж
+	housing: String
+	entrance: String
+	floor: String
 }
 
 type AddressOrder {
@@ -2070,13 +2071,13 @@ type AddressOrder {
 	postCode: String
 	street: String
 	metro: String
-	house: String      # дом 
-	apartment: String  # Квартира
-	structure: String  # Строение
+	house: String
+	apartment: String
+	structure: String
 	block: String
-	housing: String    # корпус
-	entrance: String   # Подъезд
-	floor: String      # этаж
+	housing: String
+	entrance: String
+	floor: String
 }
 
 input PriceOrderInput {

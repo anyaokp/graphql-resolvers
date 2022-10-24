@@ -1,18 +1,18 @@
 const { Schema, model } = require('mongoose')
 
-const CostGroup = new Schema(
+const CostGroupSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true },
     ordering: { type: Number },
     color: { type: String },
   },
   { timestamps: true, versionKey: false }
 )
 
-CostGroup.virtual('id').get(function () {
+CostGroupSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Cost-Group', CostGroup)
+module.exports = model('Cost-group', CostGroupSchema)

@@ -2,11 +2,11 @@ const { Schema, model } = require('mongoose')
 
 const { BASE_PRICE } = require('../constants')
 
-const PriceType = new Schema(
+const PriceTypeSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     isPromotionalPrice: { type: Boolean },
     basePrice: {
       type: String,
@@ -40,8 +40,8 @@ const PriceType = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-PriceType.virtual('id').get(function () {
+PriceTypeSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Price-type', PriceType)
+module.exports = model('Price-type', PriceTypeSchema)

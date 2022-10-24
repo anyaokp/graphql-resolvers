@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 
 const { TYPE_WAREHOUSE, RESIDUE_TYPE, DAYS } = require('../constants/index')
 
-const WareHouse = new Schema(
+const WareHouseSchema = new Schema(
   {
     name: { type: String, required: true },
     typeWarehouse: { type: String, enum: TYPE_WAREHOUSE },
@@ -39,8 +39,8 @@ const WareHouse = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-WareHouse.virtual('id').get(function () {
+WareHouseSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Ware-House', WareHouse)
+module.exports = model('Ware-house', WareHouseSchema)

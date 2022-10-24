@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const TransitionStatuses = new Schema(
+const TransitionStatusesSchema = new Schema(
   {
     orderTypeId: { type: Schema.Types.ObjectId },
     orderType: { type: Schema.Types.ObjectId, ref: 'OrderType' },
@@ -11,8 +11,8 @@ const TransitionStatuses = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-TransitionStatuses.virtual('id').get(function () {
+TransitionStatusesSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Transition-Statuses', TransitionStatuses)
+module.exports = model('Transition-statuses', TransitionStatusesSchema)

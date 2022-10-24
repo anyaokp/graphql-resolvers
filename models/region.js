@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const Region = new Schema(
+const RegionSchema = new Schema(
   {
     name: { type: String },
     countryId: { type: Schema.Types.ObjectId, required: true },
@@ -8,8 +8,8 @@ const Region = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-Region.virtual('id').get(function () {
+RegionSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Region', Region)
+module.exports = model('Region', RegionSchema)

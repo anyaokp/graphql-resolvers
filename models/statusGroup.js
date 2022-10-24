@@ -2,11 +2,11 @@ const { Schema, model } = require('mongoose')
 
 const { TYPE } = require('../constants')
 
-const StatusGroup = new Schema(
+const StatusGroupSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     ordering: { type: Number, required: true },
     color: { type: String },
     default: { type: Boolean },
@@ -15,8 +15,8 @@ const StatusGroup = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-StatusGroup.virtual('id').get(function () {
+StatusGroupSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Status-Group', StatusGroup)
+module.exports = model('Status-group', StatusGroupSchema)

@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 
 const { VAT_RATE, CONTRAGENT_TYPE } = require('../constants/index')
 
-const Contragent = new Schema(
+const ContragentSchema = new Schema(
   {
     code: { type: String, required: true },
     countryId: { type: Schema.Types.ObjectId, required: true },
@@ -26,8 +26,8 @@ const Contragent = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-Contragent.virtual('id').get(function () {
+ContragentSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Contragent', Contragent)
+module.exports = model('Contragent', ContragentSchema)

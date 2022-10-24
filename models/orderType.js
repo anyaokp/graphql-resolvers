@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose')
 
-const OrderType = new Schema(
+const OrderTypeSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     defaultForCRM: { type: Boolean },
     defaultForAPI: { type: Boolean },
     ordering: { type: Number, required: true },
@@ -12,8 +12,8 @@ const OrderType = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-OrderType.virtual('id').get(function () {
+OrderTypeSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Order-type', OrderType)
+module.exports = model('Order-type', OrderTypeSchema)

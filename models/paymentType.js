@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose')
 
-const PaymentType = new Schema(
+const PaymentTypeSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     defaultForCRM: { type: Boolean },
     defaultForApi: { type: Boolean },
     description: { type: String },
@@ -17,8 +17,8 @@ const PaymentType = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-PaymentType.virtual('id').get(function () {
+PaymentTypeSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Payment-type', PaymentType)
+module.exports = model('Payment-type', PaymentTypeSchema)

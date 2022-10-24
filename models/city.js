@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const City = new Schema(
+const CitySchema = new Schema(
   {
     name: { type: String },
     countryId: { type: Schema.Types.ObjectId, required: true },
@@ -9,8 +9,8 @@ const City = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-City.virtual('id').get(function () {
+CitySchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('City', City)
+module.exports = model('City', CitySchema)

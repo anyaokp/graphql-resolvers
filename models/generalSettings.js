@@ -9,7 +9,7 @@ const {
   PRINTING_FORMS,
 } = require('../constants')
 
-const GeneralSettings = new Schema(
+const GeneralSettingsSchema = new Schema(
   {
     company: { type: String, required: true },
     systemLanguage: { type: String, required: true, enum: SYSTEM_LANGUAGE },
@@ -55,8 +55,8 @@ const GeneralSettings = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-GeneralSettings.virtual('id').get(function () {
+GeneralSettingsSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('General-Settings', GeneralSettings)
+module.exports = model('General-settings', GeneralSettingsSchema)

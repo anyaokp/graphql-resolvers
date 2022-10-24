@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 
 const { RIGHTS, ORDER_ACCESS } = require('../constants/index')
 
-const UserGroup = new Schema(
+const UserGroupSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
@@ -29,8 +29,8 @@ const UserGroup = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-UserGroup.virtual('id').get(function () {
+UserGroupSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('User-Group', UserGroup)
+module.exports = model('User-group', UserGroupSchema)

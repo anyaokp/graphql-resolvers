@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const Bucket = new Schema(
+const BucketSchema = new Schema(
   {
     customerId: { type: Schema.Types.ObjectId, required: true },
     products: [
@@ -16,8 +16,8 @@ const Bucket = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-Bucket.virtual('id').get(function () {
+BucketSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Bucket', Bucket)
+module.exports = model('Bucket', BucketSchema)

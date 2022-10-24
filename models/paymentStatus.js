@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose')
 
-const PaymentStatus = new Schema(
+const PaymentStatusSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     defaultForCRM: { type: Boolean },
     defaultForApi: { type: Boolean },
     paymentComplete: { type: Boolean },
@@ -19,8 +19,8 @@ const PaymentStatus = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-PaymentStatus.virtual('id').get(function () {
+PaymentStatusSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Payment-Status', PaymentStatus)
+module.exports = model('Payment-status', PaymentStatusSchema)

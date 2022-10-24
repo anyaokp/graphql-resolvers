@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 
 const { DISTRIBUTION } = require('../constants')
 
-const PlatformSettings = new Schema(
+const PlatformSettingsSchema = new Schema(
   {
     distribution: { type: String, enum: DISTRIBUTION },
     emailNotification: { type: Boolean },
@@ -10,8 +10,8 @@ const PlatformSettings = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-PlatformSettings.virtual('id').get(function () {
+PlatformSettingsSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Platform-Settings', PlatformSettings)
+module.exports = model('Platform-settings', PlatformSettingsSchema)

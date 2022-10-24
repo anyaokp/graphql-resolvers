@@ -9,12 +9,12 @@ const {
   CALCULATION_TYPE,
 } = require('../constants/index')
 
-const DeliveryType = new Schema(
+const DeliveryTypeSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },
     integrationCode: { type: String, enum: INTEGRATION_CODE },
-    active: { type: Boolean },
+    active: { type: Boolean, dafault: true  },
     defaultForCrm: { type: Boolean },
     description: { type: String },
     availableCountries: [
@@ -87,8 +87,8 @@ const DeliveryType = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-DeliveryType.virtual('id').get(function () {
+DeliveryTypeSchema.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('Delivery-type', DeliveryType)
+module.exports = model('Delivery-type', DeliveryTypeSchema)
