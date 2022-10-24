@@ -5,7 +5,7 @@ const Favorite = new Schema(
     customerId: { type: Schema.Types.ObjectId, required: true },
     products: [{ type: String }],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Favorite.virtual('id').get(function () {

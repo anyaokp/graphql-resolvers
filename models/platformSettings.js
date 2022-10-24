@@ -7,7 +7,7 @@ const PlatformSettings = new Schema(
     distribution: { type: String, enum: DISTRIBUTION },
     emailNotification: { type: Boolean },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 PlatformSettings.virtual('id').get(function () {

@@ -25,7 +25,7 @@ const Shop = new Schema(
       },
     ],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Shop.virtual('id').get(function () {

@@ -52,7 +52,7 @@ const GeneralSettings = new Schema(
       enum: PRINTING_FORMS,
     },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 GeneralSettings.virtual('id').get(function () {

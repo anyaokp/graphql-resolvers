@@ -8,7 +8,7 @@ const CostGroup = new Schema(
     ordering: { type: Number },
     color: { type: String },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 CostGroup.virtual('id').get(function () {

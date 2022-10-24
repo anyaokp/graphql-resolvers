@@ -8,7 +8,7 @@ const OrderMethod = new Schema(
     defaultForCRM: { type: Boolean },
     defaultForAPI: { type: Boolean },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 OrderMethod.virtual('id').get(function () {

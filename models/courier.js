@@ -10,7 +10,7 @@ const Courier = new Schema(
     active: { type: Boolean },
     description: { type: String },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Courier.virtual('id').get(function () {

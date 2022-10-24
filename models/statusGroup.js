@@ -12,7 +12,7 @@ const StatusGroup = new Schema(
     default: { type: Boolean },
     type: { type: String, enum: TYPE },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 StatusGroup.virtual('id').get(function () {

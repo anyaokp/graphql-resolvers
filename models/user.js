@@ -89,7 +89,7 @@ const UserSchema = new Schema(
     // createdAt: String!
     // updatedAt: String!
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 UserSchema.virtual('id').get(function () {

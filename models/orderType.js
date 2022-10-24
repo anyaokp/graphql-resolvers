@@ -9,7 +9,7 @@ const OrderType = new Schema(
     defaultForAPI: { type: Boolean },
     ordering: { type: Number, required: true },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 OrderType.virtual('id').get(function () {

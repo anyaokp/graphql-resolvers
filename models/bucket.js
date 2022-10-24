@@ -13,7 +13,7 @@ const Bucket = new Schema(
       },
     ],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Bucket.virtual('id').get(function () {

@@ -9,7 +9,7 @@ const Status = new Schema(
     group: { type: Schema.Types.ObjectId, required: true },
     groupInfo: { type: Schema.Types.ObjectId, ref: 'StatusGroup' },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Status.virtual('id').get(function () {

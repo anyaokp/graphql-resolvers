@@ -84,7 +84,7 @@ const DeliveryType = new Schema(
       },
     ],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 DeliveryType.virtual('id').get(function () {

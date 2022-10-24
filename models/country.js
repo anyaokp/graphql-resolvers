@@ -4,7 +4,7 @@ const Country = new Schema(
   {
     name: { type: String },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Country.virtual('id').get(function () {

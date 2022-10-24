@@ -26,7 +26,7 @@ const UserGroup = new Schema(
       enum: ORDER_ACCESS,
     },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 UserGroup.virtual('id').get(function () {

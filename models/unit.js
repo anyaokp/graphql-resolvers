@@ -8,7 +8,7 @@ const Unit = new Schema(
     active: { type: Boolean },
     default: { type: Boolean },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Unit.virtual('id').get(function () {

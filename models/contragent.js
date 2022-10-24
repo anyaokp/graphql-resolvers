@@ -23,7 +23,7 @@ const Contragent = new Schema(
     bankAccount: { type: String },
     bankAddress: { type: String },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Contragent.virtual('id').get(function () {

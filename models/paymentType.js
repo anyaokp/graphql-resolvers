@@ -14,7 +14,7 @@ const PaymentType = new Schema(
       },
     ],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 PaymentType.virtual('id').get(function () {

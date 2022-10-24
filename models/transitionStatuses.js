@@ -8,7 +8,7 @@ const TransitionStatuses = new Schema(
     userGroup: { type: Schema.Types.ObjectId, ref: 'UserGroup' },
     matrix: { type: String },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 TransitionStatuses.virtual('id').get(function () {

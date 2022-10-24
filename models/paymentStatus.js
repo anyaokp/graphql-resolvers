@@ -16,7 +16,7 @@ const PaymentStatus = new Schema(
       },
     ],
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 PaymentStatus.virtual('id').get(function () {

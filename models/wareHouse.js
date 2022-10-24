@@ -36,7 +36,7 @@ const WareHouse = new Schema(
     phone: { type: String },
     email: { type: String },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 WareHouse.virtual('id').get(function () {

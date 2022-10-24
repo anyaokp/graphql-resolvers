@@ -12,7 +12,7 @@ const Filter = new Schema(
       statuses: [{ type: String }],
     },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 Filter.virtual('id').get(function () {

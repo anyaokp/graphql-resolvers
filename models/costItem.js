@@ -13,7 +13,7 @@ const CostItem = new Schema(
     appliesToOrders: { type: Boolean },
     appliesToUsers: { type: Boolean },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false, toObject: { virtuals: true } }
 )
 
 CostItem.virtual('id').get(function () {
