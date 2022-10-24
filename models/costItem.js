@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { TYPEEXPANSE } = require('../constants')
+const { TYPE_EXPANSE } = require('../constants')
 
 const CostItem = new Schema(
   {
@@ -9,7 +9,7 @@ const CostItem = new Schema(
     active: { type: Boolean },
     ordering: { type: Number },
     group: { type: Schema.Types.ObjectId },
-    type: { type: String, required: true, enum: TYPEEXPANSE },
+    type: { type: String, required: true, enum: TYPE_EXPANSE },
     appliesToOrders: { type: Boolean },
     appliesToUsers: { type: Boolean },
   },
@@ -20,4 +20,4 @@ CostItem.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('CostItem', CostItem)
+module.exports = model('Cost-Item', CostItem)

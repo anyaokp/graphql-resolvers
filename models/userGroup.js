@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { RIGHTS, ORDERACCESS } = require('../constants/index')
+const { RIGHTS, ORDER_ACCESS } = require('../constants/index')
 
 const UserGroup = new Schema(
   {
@@ -23,7 +23,7 @@ const UserGroup = new Schema(
     orderAccess: {
       type: String,
       required: true,
-      enum: ORDERACCESS,
+      enum: ORDER_ACCESS,
     },
   },
   { timestamps: true, versionKey: false }
@@ -33,4 +33,4 @@ UserGroup.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('UserGroup', UserGroup)
+module.exports = model('User-Group', UserGroup)

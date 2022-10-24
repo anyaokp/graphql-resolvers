@@ -23,4 +23,4 @@ PaymentStatus.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('PaymentStatus', PaymentStatus)
+module.exports = model('Payment-Status', PaymentStatus)

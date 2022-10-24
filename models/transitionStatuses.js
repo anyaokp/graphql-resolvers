@@ -15,4 +15,4 @@ TransitionStatuses.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('TransitionStatuses', TransitionStatuses)
+module.exports = model('Transition-Statuses', TransitionStatuses)

@@ -15,4 +15,4 @@ CostGroup.virtual('id').get(function () {
   return this._id
 })
 
-module.exports = model('CostGroup', CostGroup)
+module.exports = model('Cost-Group', CostGroup)
