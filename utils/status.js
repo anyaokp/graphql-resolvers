@@ -18,7 +18,7 @@ async function listStatuses(filter) {
     const result = await Status.find(query)
       .skip(skip)
       .limit(limit)
-      .populate('groupInfo')
+      .populate('group')
     const totalDocs = await Status.countDocuments(query)
     const totalPages = Math.ceil(totalDocs / limit)
     return {
@@ -36,25 +36,15 @@ async function listStatuses(filter) {
 }
 
 async function updateStatus(data) {
-  const { id, group } = data
-  const result = await Status.findById(id)
-  const info = result._id ? result.group : null
-  const groupInfo = await StatusGroup.findById(group)
-  return await Status.findByIdAndUpdate(
-    id,
-    {
-      groupInfo: groupInfo._id ? groupInfo : info,
-      ...data,
-    },
-    {
-      new: true,
-      runValidators: true,
-    }
-  ).populate('groupInfo')
+  const { id } = data
+  return await Status.findOneAndUpdate({ _id: id }, data, {
+    new: true,
+    runValidators: true,
+  }).populate('group')
 }
 
 async function deleteStatus(id) {
-  return await Status.findOneAndDelete({ _id: id }).populate('groupInfo')
+  return await Status.findOneAndDelete({ _id: id }).populate('group')
 }
 
 module.exports = {

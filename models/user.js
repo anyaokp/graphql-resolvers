@@ -42,7 +42,7 @@ const UserSchema = new Schema(
       required: true
     },
     groups: [
-      { type: String}
+      {group: { type : String, ref: 'User-group' }},
     ],
     emailAlert:  {
       type: Boolean,

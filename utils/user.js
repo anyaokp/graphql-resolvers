@@ -1,11 +1,37 @@
 const { User } = require("../models")
+const mongoose = require("mongoose")
 
 async function createUser(data){
-  return await User.create(data)
+  try {
+    let user = await User.findOneAndUpdate({_id: mongoose.Types.ObjectId()}, data, {
+      new: true,
+      upsert: true,
+      runValidators: true,
+      setDefaultsOnInsert: true,
+    }).populate('groups.group').lean()
+    console.log(user)
+    user.groups = user.groups.map(group => { 
+      return { group: { ...group.group, id : group.group._id }} 
+    })
+    user.id = user._id
+    return user
+  } catch (err) {
+    console.log("ERROR UTIL CREATE USER - ", err)
+  }
 }
 
 async function  getUser(id){
-  return await User.findOne({_id: id})
+  try {
+    let user = await User.findOne({_id: id}).populate('groups.group').lean()
+    console.log(user)
+    user.groups = user.groups.map(group => { 
+      return { group: { ...group.group, id : group.group._id }} 
+    })
+    user.id = user._id
+    return user
+  } catch (err) {
+    console.log("ERROR UTIL GET USER - ", err)
+  }
 }
 
 async function  listUsers(filter){
@@ -20,7 +46,14 @@ async function  listUsers(filter){
     lastName && (query.lastName = lastName)
 
     const skip = limit * (page - 1);
-    const users =  await User.find(query).skip(skip).limit(limit)
+    let users =  await User.find(query).populate('groups.group').skip(skip).limit(limit).lean()
+    users = users.map(user => {
+      user.groups = user.groups.map(group => { 
+        return  { group: { ...group.group, id : group.group._id }} 
+      })
+      return { ...user, id: user._id }
+    })
+    
     const totalDocs = await User.countDocuments(query)
     const totalPages = Math.ceil(totalDocs / limit)
     return { 
@@ -38,12 +71,22 @@ async function  listUsers(filter){
 }
 
 async function  updateUser(data){
-  const { id } = data
-  return await User.findOneAndUpdate(
-    {_id: id}, 
-    data,
-    {new: true, runValidators: true}
-  )
+  try {
+    const { id } = data
+    let user = await User.findOneAndUpdate(
+      {_id: id}, 
+      data,
+      {new: true, runValidators: true}
+    ).populate('groups.group').lean()
+    console.log(user)
+    user.groups = user.groups.map(group => { 
+      return { group: { ...group.group, id : group.group._id }} 
+    })
+    user.id = user._id
+    return user
+  } catch (err) {
+    console.log("ERROR UTIL UPDATE USER - ", err)
+  }
 }
 
 async function  deleteUser(id){

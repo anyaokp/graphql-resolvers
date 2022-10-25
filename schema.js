@@ -140,7 +140,7 @@ input CreateUserInput {
 	phone: String
 	active: Boolean
 	isAdmin: Boolean
-	groups: [String]
+	groups: [GroupInput]
 	emailAlert: Boolean
 	alertsWithSound: Boolean
 	online: Boolean
@@ -151,6 +151,9 @@ input CreateUserInput {
 	orderNumbers: [String]
 }
 
+input GroupInput{
+    group: String!
+}
 input UpdateUserInput {
 	id: ID!
 	lastOrderDate: String
@@ -164,7 +167,7 @@ input UpdateUserInput {
 	phone: String
 	active: Boolean
 	isAdmin: Boolean
-	groups: [String]
+	groups: [GroupInput]
 	emailAlert: Boolean
 	alertsWithSound: Boolean
 	online: Boolean
@@ -198,7 +201,7 @@ type User
 	phone: String
 	active: Boolean
 	isAdmin: Boolean
-	groups: [String]
+	groups: [UserGroupsPopulate]
 	emailAlert: Boolean
 	alertsWithSound: Boolean
 	online: Boolean
@@ -211,6 +214,9 @@ type User
 	updatedAt: String!
 }
 
+type UserGroupsPopulate {
+	group: UserGroup
+}
 enum UserStatus {
 	free
 	busy

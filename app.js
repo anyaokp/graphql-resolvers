@@ -199,6 +199,14 @@ app.use(
           console.log(err)
         }
       },
+      getUser: async (args) => {
+        try {
+          let result = await api.getUser(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
       getFavorites: async (args) => {
         try {
           let result = await api.getFavorites(args.id)
@@ -328,6 +336,14 @@ app.use(
       getUnit: async (args) => {
         try {
           let result = await api.getUnit(args.id)
+          return result
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      updateUser: async (args) => {
+        try {
+          let result = await api.updateUser(args.input)
           return result
         } catch (err) {
           console.log(err)
