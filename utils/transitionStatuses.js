@@ -1,19 +1,21 @@
 const { TransitionStatuses, OrderType, UserGroup } = require('../models')
+const mongoose = require('mongoose')
 
 async function createTransitionStatuses(data) {
-  let order, userGroup
-  const { orderTypeId, userGroupId } = data
-  if (orderTypeId) {
-    order = await OrderType.findById(orderTypeId)
+  try {
+    let transitionStatuses = await TransitionStatuses.findOneAndUpdate({_id: mongoose.Types.ObjectId()}, data, {
+      new: true,
+      upsert: true,
+      runValidators: true,
+      setDefaultsOnInsert: true,
+    })
+    .populate('orderType userGroup')
+    .lean()
+    transitionStatuses.id = transitionStatuses._id
+    return transitionStatuses
+  } catch (err) {
+    console.log("ERROR UTIL CREATE TARNSITION STATUS - ", err)
   }
-  if (userGroupId) {
-    userGroup = await UserGroup.findById(userGroupId)
-  }
-  return await TransitionStatuses.create({
-    orderType: order._id ? order : null,
-    userGroup: userGroup._id ? userGroup : null,
-    ...data,
-  })
 }
 
 async function getTransitionStatuses(id) {

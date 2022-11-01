@@ -1,21 +1,18 @@
-const { WareHouse, Region, City } = require('../models')
-
-const ObjectId = require('mongoose').Types.ObjectId
+const { WareHouse } = require('../models')
 
 async function createWareHouse(data) {
-  let city, region
-  const { regionId, cityId } = data
-  if (regionId) {
-    region = await Region.findById(regionId)
+  try {
+    let wareHouse = await WareHouse.findOneAndUpdate({_id: mongoose.Types.ObjectId()}, data, {
+      new: true,
+      upsert: true,
+      runValidators: true,
+      setDefaultsOnInsert: true,
+    }).populate('city region').lean()
+    wareHouse.id = wareHouse._id
+    return wareHouse
+  } catch (err) {
+    console.log("ERROR UTIL CREATE WARE HOUSE - ", err)
   }
-  if (cityId) {
-    city = await City.findById(cityId)
-  }
-  return await WareHouse.create({
-    region: region ? region : null,
-    city: city ? city : null,
-    ...data,
-  })
 }
 
 async function getWareHouse(id) {

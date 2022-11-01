@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const { TYPE_WAREHOUSE, RESIDUE_TYPE, DAYS } = require('../constants/index')
+const { TYPE_WAREHOUSE, RESIDUE_TYPE, DAYS } = require('../constants')
 
 const WareHouseSchema = new Schema(
   {
@@ -11,11 +11,9 @@ const WareHouseSchema = new Schema(
     description: { type: String },
     residueType: { type: String, enum: RESIDUE_TYPE },
     ordering: { type: Number },
-    country: { type: Schema.Types.ObjectId },
-    regionId: { type: Schema.Types.ObjectId },
-    cityId: { type: Schema.Types.ObjectId },
-    region: { type: Schema.Types.ObjectId, ref: 'Region' },
-    city: { type: Schema.Types.ObjectId, ref: 'City' },
+    country: { type: String },
+    regionId: { type: String, ref: 'Region' },
+    cityId: { type: String, ref: 'City'},
     street: { type: String },
     house: { type: String },
     structure: { type: String },
@@ -38,6 +36,23 @@ const WareHouseSchema = new Schema(
   },
   { timestamps: true, versionKey: false }
 )
+
+WareHouseSchema.set('toObject', { virtuals: true })
+WareHouseSchema.set('toJSON', { virtuals: true })
+
+WareHouseSchema.virtual('city', {
+  ref: 'City',
+  localField: 'cityId', 
+  foreignField: '_id',
+  justOne : true
+})
+
+WareHouseSchema.virtual('region', {
+  ref: 'Region',
+  localField: 'regionId', 
+  foreignField: '_id' ,
+  justOne : true
+})
 
 WareHouseSchema.virtual('id').get(function () {
   return this._id
